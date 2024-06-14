@@ -1,0 +1,22 @@
+Package: tmap.glyphs
+License: GPL-3
+Title: Extension for 'tmap': glyphs can be created
+Type: Package
+LazyData: true
+Authors@R: c(
+	person("Martijn", "Tennekes", email = "mtennekes@gmail.com", role = c("aut", "cre"))
+	)
+Description: Extension for 'tmap': glyphs can be created
+Version: 0.1
+Date: 2024-06-11
+Encoding: UTF-8
+Depends:
+    R (>= 3.5.0),
+Imports:
+    tmap (>= 3.99),
+    deckgl,
+    data.table
+URL: https://github.com/r-tmap/tmap.glyphs
+BugReports: https://github.com/r-tmap/glyphs/issues
+VignetteBuilder: knitr
+RoxygenNote: 7.3.1
