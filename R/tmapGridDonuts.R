@@ -35,7 +35,7 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	
 	requireNamespace("ggplot2")
 	
-	grobs <- lapply(split(dat, dat$id), function(x) {
+	grobs <- structure(lapply(split(dat, dat$id), function(x) {
 		singleCat = sum(dat$perc != 0) <= 1L
 		x$fraction = x$perc / sum(x$perc)
 		x$ymax = cumsum(x$fraction)
@@ -46,7 +46,7 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 								ggplot2::coord_polar(theta="y", start = layer_args$direction * layer_args$start * pi / 180, direction = layer_args$direction) +
 								ggplot2::xlim(c(0, 1)) +
 								theme_ps())
-	})
+	}), class = "tmapSpecial")
 	values_shapes = do.call("tmapValuesSubmit_shape", list(x = grobs, args = layer_args))
 	
 	gp$col = NA

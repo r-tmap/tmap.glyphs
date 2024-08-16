@@ -2,3 +2,5 @@
 
 export(opt_tm_donuts)
 export(tm_donuts)
+export(tm_scale_composition)
+import(data.table)

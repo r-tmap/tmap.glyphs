@@ -7,6 +7,7 @@
 #' @param ... arguments passed on to [cartogram::cartogram_cont()]
 #' @export
 opt_tm_donuts = function(points.only = "ifany",
+						 point.per = "feature",
 						 icon.scale = 6,
 						 start = 0,
 						 direction = 1,
@@ -19,7 +20,8 @@ opt_tm_donuts = function(points.only = "ifany",
 							 direction = direction,
 							 inner = inner,
 							 grob.dim = grob.dim),
-		 trans.args = list(points.only = points.only))
+		 trans.args = list(points.only = points.only,
+		 				  point.per = point.per))
 }
 
 

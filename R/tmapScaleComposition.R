@@ -21,7 +21,6 @@ tmapScaleComposition = function(..., scale, legend, chart, o, aes, layer, layer_
 		sfun = paste0("tmapValuesScale_", aes)
 		cfun = paste0("tmapValuesColorize_", aes)
 		if (is.na(value.neutral)) value.neutral = VV$value.neutral else value.neutral = do.call(sfun, list(x = do.call(cfun, list(x = value.neutral, pc = o$pc)), scale = values.scale))
-		
 		mfun = paste0("tmapValuesSubmit_", aes)
 		values = do.call(mfun, list(x = values, args = layer_args))
 		value.na = do.call(mfun, list(x = value.na, args = layer_args))
