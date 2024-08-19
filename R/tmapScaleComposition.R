@@ -1,3 +1,11 @@
+#' Internal method for tm_scale_composition
+#' 
+#' Internal method for tm_scale_composition
+#'  
+#' @param ... variables
+#' @param scale,legend,chart,o,aes,layer,layer_args,sortRev,bypass_ord,submit_legend arguments to be described
+#' @export
+#' @keywords internal
 tmapScaleComposition = function(..., scale, legend, chart, o, aes, layer, layer_args, sortRev, bypass_ord, submit_legend = TRUE) {
 	args = list(...)
 	

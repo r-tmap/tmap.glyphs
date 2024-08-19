@@ -1,7 +1,15 @@
+#' Internal methods for tm_donuts
+#' 
+#' Internal methods for tm_donuts
+#'  
+#' @param shpTM,dt,gp,bbx,facet_row,facet_col,facet_page,id,pane,group,o,... to be described
+#' @export
+#' @keywords internal
 tmapGridDonuts = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	tmapXDonuts(gs = "Grid", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
 
+#' @rdname tmapGridDonuts
 tmapLeafletDonuts = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	tmapXDonuts(gs = "Leaflet", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }

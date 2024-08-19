@@ -3,4 +3,6 @@
 export(opt_tm_donuts)
 export(tm_donuts)
 export(tm_scale_composition)
+export(tmapGridDonuts)
+export(tmapScaleComposition)
 import(data.table)
