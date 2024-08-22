@@ -12,7 +12,7 @@ tmapScaleComposition = function(..., scale, legend, chart, o, aes, layer, layer_
 	ct = NULL # what is it again?
 	cls = c("fact", "unord")
 	
-	scale = get_scale_defaults(scale, o, aes, layer, cls, ct)
+	scale = tmap::get_scale_defaults(scale, o, aes, layer, cls, ct)
 	
 	show.messages <- o$show.messages
 	show.warnings <- o$show.warnings
