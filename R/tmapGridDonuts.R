@@ -39,15 +39,18 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	dat$fill = fill[dat$pid]
 	dat$col = dt$col[dat$id]
 	dat$lwd = lwd_to_mm(dt$lwd)[dat$id] * o$scale_down * dat$lwd_compensation
-	scale = 1
-	
+
 	requireNamespace("ggplot2")
+	
+	total = length(val_list[[1]])
+	pb = utils::txtProgressBar(min = 0, max = total)
 	
 	grobs <- structure(lapply(split(dat, dat$id), function(x) {
 		singleCat = sum(dat$perc != 0) <= 1L
 		x$fraction = x$perc / sum(x$perc)
 		x$ymax = cumsum(x$fraction)
 		x$ymin = c(0, head(x$ymax, n = -1))
+		utils::setTxtProgressBar(pb, x$id[1])
 		ggplot2::ggplotGrob(ggplot2::ggplot(x, ggplot2::aes(ymax=ymax, ymin=ymin, xmax=1, xmin=layer_args$inner, fill=I(fill), color = I(col), lwd = I(lwd))) +
 								#ggplot2::scale_fill_manual(values = values[1:n]) + 
 								ggplot2::geom_rect() +

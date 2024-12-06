@@ -35,7 +35,7 @@ tmapScaleComposition = function(..., scale, legend, chart, o, aes, layer, layer_
 		value.neutral = do.call(mfun, list(x = value.neutral, args = layer_args))
 
 		totals = Reduce("+", args)
-		mx = max(totals)
+		mx = max(totals, na.rm = TRUE)
 		val_list = lapply(args, function(a) a / mx)
 		
 		vals = do.call(encode_mv, c(val_list, list(digits = 4)))
@@ -70,10 +70,7 @@ tmapScaleComposition = function(..., scale, legend, chart, o, aes, layer, layer_
 			list(vals = vals, ids = 1L, legend = legend, chart = chart, bypass_ord = bypass_ord)
 		}
 	})
-	
-	
-	
-	
+
 }
 
 encode_mv = function(..., digits = 4) {
@@ -82,17 +79,15 @@ encode_mv = function(..., digits = 4) {
 	k = length(args)
 	m = seq(0, by = digits, length.out = k)
 	
-	lst = mapply(function(v, mi) {
-		v * 10^(digits-1+mi)
-	}, args, m, SIMPLIFY = FALSE)
-	Reduce("+", lst)
+	lst = lapply(args, function(v) {
+		sprintf(paste0("%0", digits, "d"), round(v * 10^digits))
+	})
+	Reduce(paste0, lst)
 }
 
 decode_mv = function(x, digits = 4) {
-	m_temp = seq(0, by = digits, length.out = 20)
-	k = which(vapply(m_temp, function(mi) all(x < 10^mi), FUN.VALUE = logical(1)))[1] - 1L
-	m = seq(0, by = digits, length.out = k)
-	lst = lapply(m, function(mi) {
-		(floor(x / 10^mi) %% 10^digits) / 10^(digits-1L)
+	m = seq(1, nchar(x[1]), by = digits)
+	lapply(m, function(mi) {
+		as.numeric(substr(x, mi, mi + digits-1))
 	})
 }
