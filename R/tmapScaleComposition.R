@@ -43,7 +43,8 @@ tmapScaleComposition = function(..., scale, legend, chart, o, aes, layer, layer_
 		
 		value.neutral = vals[1]
 		
-		icon_scale = if (getOption("tmap.mode") == "plot") layer_args$icon.scale else 1
+		# only for the legend
+		icon_scale = layer_args$icon.scale * {if (getOption("tmap.mode") == "plot") .95 else .66} # approximation, have to find out why
 		
 		legend = within(legend, {
 			nitems = length(labs)

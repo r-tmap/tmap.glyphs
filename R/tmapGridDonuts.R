@@ -40,6 +40,7 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	dat$col = dt$col[dat$id]
 	dat$lwd = lwd_to_mm(dt$lwd)[dat$id] * o$scale_down * dat$lwd_compensation
 
+	
 	requireNamespace("ggplot2")
 	
 	total = length(val_list[[1]])
@@ -72,16 +73,17 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	value_neutral = do.call("tmapValuesSubmit_shape", list(x = grobs[1], args = layer_args))
 
 	
-	# update legends:
-	# - get vneutral for scale composision
-	# - set vneutral for scale shape
-	legs_cached = get("legs", .TMAP)
-	unms = vapply(legs_cached, "[[", character(1), "unm", USE.NAMES = FALSE)
-	mfuns = vapply(legs_cached, "[[", character(1), "mfun", USE.NAMES = FALSE)
-	id_shape = which(unms == "shape" & mfuns == "Donuts")
-	legs_cached[[id_shape]]$vneutral = value_neutral
-	
-	assign("legs", legs_cached, envir = .TMAP)
+	# # update legends:
+	# # - get vneutral for scale composision
+	# # - set vneutral for scale shape
+	# legs_cached = get("legs", .TMAP)
+	# unms = vapply(legs_cached, "[[", character(1), "unm", USE.NAMES = FALSE)
+	# mfuns = vapply(legs_cached, "[[", character(1), "mfun", USE.NAMES = FALSE)
+	# id_shape = which(unms == "shape" & mfuns == "Donuts")
+	# legs_cached[[id_shape]]$vneutral = 24 #value_neutral
+	# 
+	# 
+	# assign("legs", legs_cached, envir = .TMAP)
 	
 	do.call(fun, c(list(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o), layer_args))
 }
