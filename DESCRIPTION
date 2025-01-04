@@ -6,7 +6,7 @@ LazyData: true
 Authors@R: c(
 	person("Martijn", "Tennekes", email = "mtennekes@gmail.com", role = c("aut", "cre"))
 	)
-Description: Extension for 'tmap': glyphs can be created
+Description: New layer functions are available for tmap that enable glyph maps.
 Version: 0.1
 Date: 2024-06-11
 Encoding: UTF-8
@@ -14,9 +14,8 @@ Depends:
     R (>= 3.5.0),
 Imports:
     tmap (>= 3.99),
-    deckgl,
+    ggplot2,
     data.table
 URL: https://github.com/r-tmap/tmap.glyphs
 BugReports: https://github.com/r-tmap/glyphs/issues
-VignetteBuilder: knitr
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2

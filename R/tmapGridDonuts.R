@@ -4,6 +4,7 @@
 #'  
 #' @param shpTM,dt,gp,bbx,facet_row,facet_col,facet_page,id,pane,group,o,... to be described
 #' @export
+#' @importFrom utils head
 #' @keywords internal
 tmapGridDonuts = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	tmapXDonuts(gs = "Grid", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
@@ -16,6 +17,12 @@ tmapLeafletDonuts = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_pag
 
 	
 tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+	ymin = NULL
+	ymax = NULL
+	lwd = NULL
+	shape = NULL
+	parts = NULL
+	
 	layer_args = list(...)
 	
 	
@@ -38,7 +45,7 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	
 	dat$fill = fill[dat$pid]
 	dat$col = dt$col[dat$id]
-	dat$lwd = lwd_to_mm(dt$lwd)[dat$id] * o$scale_down * dat$lwd_compensation
+	dat$lwd = tmap::lwd_to_mm(dt$lwd)[dat$id] * o$scale_down * dat$lwd_compensation
 
 	
 	requireNamespace("ggplot2")
@@ -46,18 +53,19 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	total = length(val_list[[1]])
 	pb = utils::txtProgressBar(min = 0, max = total)
 	
+	
 	grobs <- structure(lapply(split(dat, dat$id), function(x) {
 		singleCat = sum(dat$perc != 0) <= 1L
 		x$fraction = x$perc / sum(x$perc)
 		x$ymax = cumsum(x$fraction)
-		x$ymin = c(0, head(x$ymax, n = -1))
+		x$ymin = c(0, utils::head(x$ymax, n = -1))
 		utils::setTxtProgressBar(pb, x$id[1])
 		ggplot2::ggplotGrob(ggplot2::ggplot(x, ggplot2::aes(ymax=ymax, ymin=ymin, xmax=1, xmin=layer_args$inner, fill=I(fill), color = I(col), lwd = I(lwd))) +
 								#ggplot2::scale_fill_manual(values = values[1:n]) + 
 								ggplot2::geom_rect() +
 								ggplot2::coord_polar(theta="y", start = layer_args$direction * layer_args$start * pi / 180, direction = layer_args$direction) +
 								ggplot2::xlim(c(0, 1)) +
-								theme_ps())
+								tmap::theme_ps())
 	}), class = "tmapSpecial")
 	values_shapes = do.call("tmapValuesSubmit_shape", list(x = grobs, args = layer_args))
 	

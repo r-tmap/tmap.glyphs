@@ -9,39 +9,40 @@ opt_tm_donuts(
   start = 0,
   direction = 1,
   inner = 0.4,
-  points.only = "ifany",
-  point.per = "feature",
-  icon.scale = 6,
+  points_only = "ifany",
+  point_per = "feature",
+  on_surface = FALSE,
+  icon.scale = 9,
   just = NA,
   grob.dim = c(width = 48, height = 48, render.width = 256, render.height = 256)
 )
 
 tm_donuts(
-  parts = tm_mv(),
+  parts = tmap::tm_vars(multivariate = TRUE),
   parts.scale = tm_scale_composition(),
-  parts.legend = tm_legend_hide(),
-  parts.chart = tm_chart_none(),
+  parts.legend = tmap::tm_legend_hide(),
+  parts.chart = tmap::tm_chart_none(),
   parts.free = NA,
-  size = tm_const(),
-  size.scale = tm_scale(),
-  size.legend = tm_legend(),
-  size.chart = tm_chart_none(),
+  size = tmap::tm_const(),
+  size.scale = tmap::tm_scale(),
+  size.legend = tmap::tm_legend(),
+  size.chart = tmap::tm_chart_none(),
   size.free = NA,
-  fill.scale = tm_scale(),
-  fill.legend = tm_legend(),
-  fill.chart = tm_chart_none(),
+  fill.scale = tmap::tm_scale(),
+  fill.legend = tmap::tm_legend(),
+  fill.chart = tmap::tm_chart_none(),
   fill.free = NA,
-  col = tm_const(),
-  col.scale = tm_scale(),
-  col.legend = tm_legend(),
-  col.chart = tm_chart_none(),
+  col = tmap::tm_const(),
+  col.scale = tmap::tm_scale(),
+  col.legend = tmap::tm_legend(),
+  col.chart = tmap::tm_chart_none(),
   col.free = NA,
-  lwd = tm_const(),
-  lwd.scale = tm_scale(),
-  lwd.legend = tm_legend(),
-  lwd.chart = tm_chart_none(),
+  lwd = tmap::tm_const(),
+  lwd.scale = tmap::tm_scale(),
+  lwd.legend = tmap::tm_legend(),
+  lwd.chart = tmap::tm_chart_none(),
   lwd.free = NA,
-  plot.order = tm_plot_order("DATA", reverse = FALSE),
+  plot.order = tmap::tm_plot_order("DATA", reverse = FALSE),
   zindex = NA,
   group = NA,
   group.control = "check",
@@ -59,9 +60,11 @@ tm_donuts(
 
 \item{inner}{proportion of the inner circle}
 
-\item{points.only}{should only point geometries of the shape object (defined in [tm_shape()]) be plotted? By default `"ifany"`, which means `TRUE` in case a geometry collection is specified.}
+\item{points_only}{should only point geometries of the shape object (defined in [tm_shape()]) be plotted? By default `"ifany"`, which means `TRUE` in case a geometry collection is specified.}
 
-\item{point.per}{specification of how spatial points are mapped when the geometry is a multi line or a multi polygon. One of \code{"feature"}, \code{"segment"} or \code{"largest"}. The first generates a spatial point for every feature, the second for every segment (i.e. subfeature), the third only for the largest segment (subfeature). Note that the last two options can be significant slower.}
+\item{point_per}{specification of how spatial points are mapped when the geometry is a multi line or a multi polygon. One of \code{"feature"}, \code{"segment"} or \code{"largest"}. The first generates a spatial point for every feature, the second for every segment (i.e. subfeature), the third only for the largest segment (subfeature). Note that the last two options can be significant slower.}
+
+\item{on_surface}{In case of polygons, centroids are computed. Should the points be on the surface? If `TRUE`, which is slower than the default `FALSE`, centroids outside the surface are replaced with points computed with [sf::st_point_on_surface()].}
 
 \item{icon.scale}{scaling number that determines how large the icons (or grobs) are in plot mode in comparison to proportional symbols (such as bubbles). For view mode, use the argument `grob.dim`}
 
