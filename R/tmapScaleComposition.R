@@ -38,13 +38,13 @@ tmapScaleComposition = function(..., scale, legend, chart, o, aes, layer, layer_
 		mx = max(totals, na.rm = TRUE)
 		val_list = lapply(args, function(a) a / mx)
 		
-		vals = do.call(encode_mv, c(val_list, list(digits = 4)))
+		vals = do.call(encode_mv, c(val_list, list(digits = 5)))
 		labs = paste0("label", 1:n)
 		
 		value.neutral = vals[1]
 		
 		# only for the legend
-		icon_scale = layer_args$icon.scale * {if (getOption("tmap.mode") == "plot") .95 else .66} # approximation, have to find out why
+		icon_scale = layer_args$icon.scale * {if (getOption("tmap.mode") == "plot") 1.15 else .80} # approximation, have to find out why
 		
 		legend = within(legend, {
 			nitems = length(labs)
@@ -78,11 +78,12 @@ encode_mv = function(..., digits = 4) {
 	args = list(...)
 	
 	k = length(args)
-	m = seq(0, by = digits, length.out = k)
+	#m = seq(0, by = digits, length.out = k)
 	
 	lst = lapply(args, function(v) {
-		sprintf(paste0("%0", digits, "d"), round(v * 10^digits))
+		sprintf(paste0("%0", digits, "d"), round(v * 10^(digits-1)))
 	})
+	lst
 	Reduce(paste0, lst)
 }
 

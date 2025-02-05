@@ -4,10 +4,11 @@
 opt_tm_donuts = function(start = 0,
 						 direction = 1,
 						 inner = .4,
+						 fill_hole = NA,
 						 points_only = "ifany",
 						 point_per = "feature",
 						 on_surface = FALSE,
-						 icon.scale = 9,
+						 icon.scale = 6,
 						 just = NA,
 						 grob.dim = c(width=48, height=48, render.width=256, render.height=256)) {
 	list(mapping.args = list(icon.scale = icon.scale,
@@ -15,6 +16,7 @@ opt_tm_donuts = function(start = 0,
 							 start = start,
 							 direction = direction,
 							 inner = inner,
+							 fill_hole = fill_hole,
 							 grob.dim = grob.dim),
 		 trans.args = list(points_only = points_only,
 		 				  point_per = point_per,
@@ -25,7 +27,7 @@ opt_tm_donuts = function(start = 0,
 
 #' Map layer: donuts
 #' 
-#' Map layer that draws a donuts
+#' Map layer that draw donuts as glyphs
 #' 
 #' @param parts,parts.scale,parts.legend,parts.chart,parts.free Variables that determine the size of the parts
 #' @param size,size.scale,size.legend,size.chart,size.free Variables that determine the size of the donut

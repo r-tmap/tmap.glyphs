@@ -26,7 +26,7 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	layer_args = list(...)
 	
 	
-	val_list = decode_mv(dt$parts, digits = 4)
+	val_list = decode_mv(dt$parts, digits = 5)
 	n = length(val_list)
 	
 	labs = paste0("label", 1:n)
@@ -55,17 +55,8 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	
 	
 	grobs <- structure(lapply(split(dat, dat$id), function(x) {
-		singleCat = sum(dat$perc != 0) <= 1L
-		x$fraction = x$perc / sum(x$perc)
-		x$ymax = cumsum(x$fraction)
-		x$ymin = c(0, utils::head(x$ymax, n = -1))
-		utils::setTxtProgressBar(pb, x$id[1])
-		ggplot2::ggplotGrob(ggplot2::ggplot(x, ggplot2::aes(ymax=ymax, ymin=ymin, xmax=1, xmin=layer_args$inner, fill=I(fill), color = I(col), lwd = I(lwd))) +
-								#ggplot2::scale_fill_manual(values = values[1:n]) + 
-								ggplot2::geom_rect() +
-								ggplot2::coord_polar(theta="y", start = layer_args$direction * layer_args$start * pi / 180, direction = layer_args$direction) +
-								ggplot2::xlim(c(0, 1)) +
-								tmap::theme_ps())
+		donutGrob(x, layer_args)
+		
 	}), class = "tmapSpecial")
 	values_shapes = do.call("tmapValuesSubmit_shape", list(x = grobs, args = layer_args))
 	
