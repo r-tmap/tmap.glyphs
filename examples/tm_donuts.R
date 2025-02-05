@@ -13,6 +13,6 @@ tm_shape(ZH_muni) +
 	tm_donuts(parts = tm_vars(c("income_low", "income_middle", "income_high"), multivariate = TRUE),
 			  fill.scale = tm_scale_categorical(values = "-pu_gn_div"),			  
 			  size = "population",
-			  lwd = 4,
+			  lwd = 1,
 			  size.scale = tm_scale_continuous(ticks = c(50000, 100000, 250000, 500000)),
-			  options = opt_tm_donuts(fill_hole = "pink"))
+			  options = opt_tm_donuts(fill_hole = "grey90"))

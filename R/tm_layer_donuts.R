@@ -105,7 +105,7 @@ tm_donuts = function(parts = tmap::tm_vars(multivariate = TRUE),
 					 options = opt_tm_donuts()) {
 	po = plot.order
 	
-	shape = 19
+	shape = 21# grid::circleGrob(r = unit(1, "lines"))
 	shape.scale = tmap::tm_scale()
 	shape.legend = tmap::tm_legend()
 	shape.chart = tmap::tm_chart_none()

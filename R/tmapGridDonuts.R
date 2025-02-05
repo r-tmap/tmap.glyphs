@@ -38,9 +38,9 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	fill = strsplit(dt$fill[1], "__", fixed = TRUE)[[1]]
 
 	if (gs == "Leaflet") {
-		dat$lwd_compensation = 4/dt$size[dat$id]
+		dat$lwd_compensation = 16/dt$size[dat$id]
 	} else {
-		dat$lwd_compensation = 1
+		dat$lwd_compensation = 4
 	}
 	
 	dat$fill = fill[dat$pid]
@@ -48,8 +48,7 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	dat$lwd = tmap::lwd_to_mm(dt$lwd)[dat$id] * o$scale_down * dat$lwd_compensation
 
 	
-	requireNamespace("ggplot2")
-	
+
 	total = length(val_list[[1]])
 	pb = utils::txtProgressBar(min = 0, max = total)
 	
