@@ -1,9 +1,10 @@
-#' Scales: composition
+
+#' Scales: normalized
 #' 
 #' Scales in tmap are configured by the family of functions with prefix `tm_scale`.
 #' Such function should be used for the input of the `.scale` arguments in the
 #' layer functions (e.g. `fill.scale` in [tm_polygons()]).
-#' The function `tm_scale_composition()` is used for the creation of composition glyphs, such as pie charts and donut charts.
+#' The function `tm_scale_normalized()` is used for the creation of glyphs, which take one or multiple normalized (between 0 and 1) values. E.g. the flower glyph.
 #' 
 #' @param values (generic scale argument) The visual values. For colors (e.g. `fill` or `col` for `tm_polygons()`) this is a palette name from the `cols4all` package (see [cols4all::c4a()]) or vector of colors, for size (e.g. `size` for `tm_symbols()`) these are a set of sizes (if two values are specified they are interpret as range), for symbol shapes (e.g. `shape` for [tm_symbols()]) these are a set of symbols, etc. The tmap option `values.var` contains the default values per visual variable and in some cases also per data type.
 #' @param values.repeat (generic scale argument) Should the values be repeated in case there are more categories?
@@ -17,9 +18,9 @@
 #' @param label.null (generic scale argument) Label for null (out-of-scope) values
 #' @export
 #' @import data.table
-#' @name tm_scale_composition
-#' @rdname tm_scale_composition
-tm_scale_composition = function(
+#' @name tm_scale_normalized
+#' @rdname tm_scale_normalized
+tm_scale_normalized = function(
 		values = NA,
 		values.repeat = FALSE,
 		values.range  = NA,
@@ -30,5 +31,5 @@ tm_scale_composition = function(
 		labels = NULL,
 		label.na = NA,
 		label.null = NA) { 
-	structure(c(list(FUN = "tmapScaleComposition"), as.list(environment())), class = c("tm_scale_composition", "tm_scale", "list"))
+	structure(c(list(FUN = "tmapScaleNormalized"), as.list(environment())), class = c("tm_scale_normalized", "tm_scale", "list"))
 }

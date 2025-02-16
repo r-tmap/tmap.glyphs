@@ -1,5 +1,6 @@
 if (FALSE) {
-	df = structure(list(pid = 1:3, id = c(1L, 1L, 1L), perc = c(419000, 
+	
+	df = structure(list(pid = 1:3, id = c(1L, 1L, 1L), perc = c(1000000, 
 														   387000, 194000), lwd_compensation = c(1, 1, 1), fill = c("#4D9D4F", 
 														   														 "#E8E8E8", "#B873C0"), col = c("#000000", "#000000", "#000000"
 														   														 ), lwd = c(1.41111111111111, 1.41111111111111, 1.41111111111111
@@ -7,6 +8,11 @@ if (FALSE) {
 														   														 ))
 	opts = list(inner = 0.4, direction = 1, start = 0, fill_hole = NA)
 	opts = list(inner = 0.4, direction = 1, start = 0, fill_hole = "pink")
+	
+	grid.draw(donutGrob(df, opts))
+	
+	
+	grid.newpage();grid.rect();grid.draw(flowerGrob(df))
 }
 
 
@@ -82,3 +88,111 @@ donutGrob = function(df, opts = list(inner = 0.4, direction = 1, start = 0)) {
 	# Combine all grobs into a single gTree object
 	grid::gTree(children = do.call(grid::gList, grob_list), vp = grid::viewport(width = unit(1, "snpc"), height = unit(1, "snpc"), xscale = c(-1, 1), yscale = c(-1, 1)))
 }
+
+
+#flowerGrob = function(df, opts = list(scale = 0.4, p1 = 0.05, p2 = 0.3, p3 = 0.5, p4 = 0.2, a1 = pi/2, a2 = pi/4, shape = 1)) {
+flowerGrob = function(df, opts = list(scale = 0.4, p1 = 0.2, p2 = 1, p3 = 0, p4 = 0, a1 = 0, a2 = 0.3, shape = 1)) {
+		x = 0.5
+	y = 0.5
+	petal_sizes = df$perc / 1e6
+	fill = df$fill
+	col = df$col
+	lwd = df$lwd
+	with(opts, {
+			
+		# Input validation
+		if (!is.numeric(x) || length(x) != 1 || x < 0 || x > 1) {
+			stop("'x' must be a single number between 0 and 1.")
+		}
+		if (!is.numeric(y) || length(y) != 1 || y < 0 || y > 1) {
+			stop("'y' must be a single number between 0 and 1.")
+		}
+		if (!is.numeric(scale) || length(scale) != 1 || scale <= 0) {
+			stop("'scale' must be a single positive number.")
+		}
+		
+		k <- length(petal_sizes)
+		angles <- seq(0, 2 * pi, length.out = k + 1)[1:k]
+		
+		petal_grobs <- lapply(1:k, function(i) {
+			gp = grid::gpar(fill = fill[i], col = col[i], lwd = lwd[i])
+			
+			if (is.na(petal_sizes[i])) {
+				# Calculate petal tip coordinates
+				tip_x <- x + scale * cos(angles[i])
+				tip_y <- y + scale * sin(angles[i])
+				
+				# Control point for tip rounding
+				round_fact <- p4 * scale * 1
+				r_x <- tip_x + round_fact*cos(angles[i]) # Control point *at* the tip
+				r_y <- tip_y + round_fact*sin(angles[i])
+				grid::polylineGrob(x = grid::unit(c(x, r_x), "npc"),
+								   y = grid::unit(c(y, r_y), "npc"),
+								   gp = gp)
+			} else {
+				# Calculate petal tip coordinates
+				tip_x <- x + scale * petal_sizes[i] * cos(angles[i])
+				tip_y <- y + scale * petal_sizes[i] * sin(angles[i])
+				
+				# Squash racket shape - using xsplineGrob for smooth curves
+				
+				# Control points, designed for a narrower base and wider, rounded head.
+				# We use *relative* control points for smooth curves.
+				
+				# Handle points (very narrow)
+				handle_width <- p1 * scale  # Much narrower handle
+				h1_x <- x + handle_width * cos(angles[i] - a1)
+				h1_y <- y + handle_width * sin(angles[i] - a1)
+				h2_x <- x + handle_width * cos(angles[i] + a1)
+				h2_y <- y + handle_width * sin(angles[i] + a1)
+				
+				# Intermediate points (wider, for transition to the head)
+				mid_width <- p2 * scale * petal_sizes[i]
+				m1_x <- x + mid_width * cos(angles[i] - a2) # Adjusted angles
+				m1_y <- y + mid_width * sin(angles[i] - a2)
+				m2_x <- x + mid_width * cos(angles[i] + a2)
+				m2_y <- y + mid_width * sin(angles[i] + a2)
+				
+				# Head points (widest part)
+				head_width <- p3 * scale * petal_sizes[i] # Wider head
+				hd1_x <- tip_x + head_width * cos(angles[i] + a1)
+				hd1_y <- tip_y + head_width * sin(angles[i] + a1)
+				hd2_x <- tip_x + head_width * cos(angles[i] - a1)
+				hd2_y <- tip_y + head_width * sin(angles[i] - a1)
+				
+				# Control point for tip rounding
+				round_fact <- p4 * scale * petal_sizes[i]
+				r_x <- tip_x + round_fact*cos(angles[i]) # Control point *at* the tip
+				r_y <- tip_y + round_fact*sin(angles[i])
+				
+				# Combine all points
+				x_coords <- c(x, h1_x, m1_x, hd2_x, r_x, hd1_x, m2_x, h2_x, x)
+				y_coords <- c(y, h1_y, m1_y, hd2_y, r_y, hd1_y, m2_y, h2_y, y)
+				
+				grid::gList(
+					# grid::pointsGrob(
+					# 	x = grid::unit(x_coords, "npc"),
+					# 	y = grid::unit(y_coords, "npc"),
+					# 	gp = gp,
+					# 	default.units = "npc"
+					# ),
+					grid::xsplineGrob(
+						x = grid::unit(x_coords, "npc"),
+						y = grid::unit(y_coords, "npc"),
+						shape = shape,  # Adjust for desired curvature. -1 can be too extreme.
+						open = FALSE,
+						gp = gp,
+						default.units = "npc"
+					))				
+			}
+		})
+		
+		# Create a circle for the center
+		center_grob <- NULL#Lgrid::circleGrob(x = x, y = y, r = scale * 0.1, gp = grid::gpar(fill = "yellow", col = "black"))
+		
+		# Combine all grobs into a gTree
+		grid::gTree(children = grid::gList(do.call(grid::gList, petal_grobs), center_grob), cl = "squashRacketFlowerGlyph")
+	})
+}
+
+

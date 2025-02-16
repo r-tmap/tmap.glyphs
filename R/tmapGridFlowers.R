@@ -1,22 +1,22 @@
-#' Internal methods for tm_donuts
+#' Internal methods for tm_flowers
 #' 
-#' Internal methods for tm_donuts
+#' Internal methods for tm_flowers
 #'  
 #' @param shpTM,dt,gp,bbx,facet_row,facet_col,facet_page,id,pane,group,o,... to be described
 #' @export
 #' @importFrom utils head
 #' @keywords internal
-tmapGridDonuts = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
-	tmapXDonuts(gs = "Grid", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
+tmapGridFlowers = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+	tmapXFlowers(gs = "Grid", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
 
-#' @rdname tmapGridDonuts
-tmapLeafletDonuts = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
-	tmapXDonuts(gs = "Leaflet", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
+#' @rdname tmapGridFlowers
+tmapLeafletFlowers = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+	tmapXFlowers(gs = "Leaflet", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
 
-	
-tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+
+tmapXFlowers = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	ymin = NULL
 	ymax = NULL
 	lwd = NULL
@@ -36,7 +36,7 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	}, val_list, 1:n, SIMPLIFY = FALSE))
 	
 	fill = strsplit(dt$fill[1], "__", fixed = TRUE)[[1]]
-
+	
 	if (gs == "Leaflet") {
 		dat$lwd_compensation = 16/dt$size[dat$id]
 	} else {
@@ -46,16 +46,16 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	dat$fill = fill[dat$pid]
 	dat$col = dt$col[dat$id]
 	dat$lwd = tmap::lwd_to_mm(dt$lwd)[dat$id] * o$scale_down * dat$lwd_compensation
-
 	
-
+	
+	
 	total = length(val_list[[1]])
 	pb = utils::txtProgressBar(min = 0, max = total)
 	
 	
 	grobs <- structure(lapply(split(dat, dat$id), function(x) {
-		#flowerGrob(x)
-		donutGrob(x, layer_args)
+		flowerGrob(x)
+		#donutGrob(x, layer_args)
 		
 	}), class = "tmapSpecial")
 	values_shapes = do.call("tmapValuesSubmit_shape", list(x = grobs, args = layer_args))
@@ -70,7 +70,7 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	fun = paste0("tmap", gs, "Symbols")
 	
 	value_neutral = do.call("tmapValuesSubmit_shape", list(x = grobs[1], args = layer_args))
-
+	
 	
 	# # update legends:
 	# # - get vneutral for scale composision
@@ -78,7 +78,7 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	# legs_cached = get("legs", .TMAP)
 	# unms = vapply(legs_cached, "[[", character(1), "unm", USE.NAMES = FALSE)
 	# mfuns = vapply(legs_cached, "[[", character(1), "mfun", USE.NAMES = FALSE)
-	# id_shape = which(unms == "shape" & mfuns == "Donuts")
+	# id_shape = which(unms == "shape" & mfuns == "Flowers")
 	# legs_cached[[id_shape]]$vneutral = 24 #value_neutral
 	# 
 	# 
