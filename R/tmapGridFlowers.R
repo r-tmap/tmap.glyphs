@@ -54,6 +54,7 @@ tmapXFlowers = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page
 	
 	
 	grobs <- structure(lapply(split(dat, dat$id), function(x) {
+		#flowerGrob(x)
 		flowerGrob(x)
 		#donutGrob(x, layer_args)
 		

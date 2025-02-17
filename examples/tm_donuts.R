@@ -35,6 +35,6 @@ World$norm_press = (100 - World$press) / 100
 World$norm_gender = World$gender
 
 tm_shape(World) +
-	tm_polygons() +
+	tm_polygons(fill = "white", popup.vars = FALSE) +
 	tm_flowers(parts = tm_vars(c("norm_well_being", "norm_footprint", "norm_inequality", "norm_press", "norm_gender"), multivariate = TRUE),
-			   size = 2)
+			   size = 2, popup.vars = c("norm_well_being", "norm_footprint", "norm_inequality", "norm_press", "norm_gender"), id = "name")
