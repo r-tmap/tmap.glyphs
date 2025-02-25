@@ -52,15 +52,20 @@ tmapXFlowers = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page
 	total = length(val_list[[1]])
 	pb = utils::txtProgressBar(min = 0, max = total)
 	
-	
-	grobs <- structure(lapply(split(dat, dat$id), function(x) {
-		#flowerGrob(x)
-		flowerGrob(x)
-		#donutGrob(x, layer_args)
+
 		
+	grobs <- structure(lapply(split(dat, dat$id), function(x) {
+		if (any(is.na(x$perc))) return(NULL)
+		flowerGrob(x)
 	}), class = "tmapSpecial")
-	values_shapes = do.call("tmapValuesSubmit_shape", list(x = grobs, args = layer_args))
 	
+	values_shapes = rep(NA_integer_, total)
+	
+	sel = which(!is.na(val_list[[1]]))
+	if (length(sel)) {
+		values_shapes[sel] = do.call("tmapValuesSubmit_shape", list(x = grobs[sel], args = layer_args))
+	}
+
 	gp$col = NA
 	gp$shape = "__shape"
 	

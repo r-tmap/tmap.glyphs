@@ -38,10 +38,18 @@ tmapScaleComposition = function(..., scale, legend, chart, o, aes, layer, layer_
 		mx = max(totals, na.rm = TRUE)
 		val_list = lapply(args, function(a) a / mx)
 		
+		anyna = Reduce("|", lapply(args, is.na))
+		
+		
 		vals = do.call(encode_mv, c(val_list, list(digits = 5)))
+		
+		if (is.na(value.na)) {
+			vals[anyna] = NA
+		}
+		
 		labs = paste0("label", 1:n)
 		
-		value.neutral = vals[1]
+		value.neutral = do.call(encode_mv, c(as.list(rep(1/n, n)), list(digits = 5)))
 		
 		# only for the legend
 		icon_scale = layer_args$icon.scale * {if (getOption("tmap.mode") == "plot") 1.15 else .80} # approximation, have to find out why
@@ -88,8 +96,11 @@ encode_mv = function(..., digits = 4) {
 }
 
 decode_mv = function(x, digits = 4) {
-	m = seq(1, nchar(x[1]), by = digits)
+	nna = which(!is.na(x))
+	m = seq(1, nchar(x[nna[1]]), by = digits)
 	lapply(m, function(mi) {
-		as.numeric(substr(x, mi, mi + digits-1))
+		res = rep(NA_real_, length(x))
+		if (length(nna)) res[nna] = as.numeric(substr(x[nna], mi, mi + digits-1))
+		res
 	})
 }

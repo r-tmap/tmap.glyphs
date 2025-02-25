@@ -256,7 +256,7 @@ flowerGrob <- function(df, opts = list(scale = 0.5,
 				x_coords <- c(x, b1_x, b3_x, tip_x, b4_x, b2_x, x)
 				y_coords <- c(y, b1_y, b3_y, tip_y, b4_y, b2_y, y)
 				
-				xsplineGrob(
+				grid::xsplineGrob(
 					x = unit(x_coords, "npc"),
 					y = unit(y_coords, "npc"),
 					shape = as.numeric(shape_factor),
@@ -268,7 +268,7 @@ flowerGrob <- function(df, opts = list(scale = 0.5,
 		})
 		#center_grob <- circleGrob(x = x, y = y, r = scale * 0.1, gp = gpar(fill = "yellow", col = "black"))
 		#gTree(children = gList(do.call(gList, petal_grobs), center_grob), cl = "raindropFlowerGlyph")
-		gTree(children = gList(do.call(gList, petal_grobs)), cl = "flowerGlyph")		
+		grid::gTree(children = grid::gList(do.call(grid::gList, petal_grobs)), cl = "flowerGlyph")		
 	})
 
 }

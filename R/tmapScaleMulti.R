@@ -1,12 +1,12 @@
-#' Internal method for tm_scale_normalized
+#' Internal method for tm_scale_multi
 #' 
-#' Internal method for tm_scale_normalized
+#' Internal method for tm_scale_multi
 #'  
 #' @param ... variables
 #' @param scale,legend,chart,o,aes,layer,layer_args,sortRev,bypass_ord,submit_legend arguments to be described
 #' @export
 #' @keywords internal
-tmapScaleNormalized = function(..., scale, legend, chart, o, aes, layer, layer_args, sortRev, bypass_ord, submit_legend = TRUE) {
+tmapScaleMulti = function(..., scale, legend, chart, o, aes, layer, layer_args, sortRev, bypass_ord, submit_legend = TRUE) {
 	args = list(...)
 	
 	ct = NULL # what is it again?
@@ -38,7 +38,13 @@ tmapScaleNormalized = function(..., scale, legend, chart, o, aes, layer, layer_a
 		#mx = max(totals, na.rm = TRUE)
 		#val_list = lapply(args, function(a) a / mx)
 		
+		
+		anyna = Reduce("|", lapply(args, is.na))
+
 		vals = do.call(encode_mv, c(args, list(digits = 5)))
+		if (is.na(value.na)) {
+			vals[anyna] = NA
+		}
 		labs = paste0("label", 1:n)
 		
 		value.neutral = vals[1]
@@ -72,24 +78,4 @@ tmapScaleNormalized = function(..., scale, legend, chart, o, aes, layer, layer_a
 		}
 	})
 	
-}
-
-encode_mv = function(..., digits = 4) {
-	args = list(...)
-	
-	k = length(args)
-	#m = seq(0, by = digits, length.out = k)
-	
-	lst = lapply(args, function(v) {
-		sprintf(paste0("%0", digits, "d"), round(v * 10^(digits-1)))
-	})
-	lst
-	Reduce(paste0, lst)
-}
-
-decode_mv = function(x, digits = 4) {
-	m = seq(1, nchar(x[1]), by = digits)
-	lapply(m, function(mi) {
-		as.numeric(substr(x, mi, mi + digits-1))
-	})
 }

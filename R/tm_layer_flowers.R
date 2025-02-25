@@ -69,9 +69,10 @@ opt_tm_flowers = function(start = 0,
 #' @param just justification of the text relative to the point coordinates. Either one of the following values: \code{"left"} , \code{"right"}, \code{"center"}, \code{"bottom"}, and \code{"top"}, or a vector of two values where first value specifies horizontal and the second value vertical justification. Besides the mentioned values, also numeric values between 0 and 1 can be used. 0 means left justification for the first value and bottom justification for the second value. Note that in view mode, only one value is used.
 #' @param grob.dim vector of four values that determine how grob objects (see details) are shown in view mode. The first and second value are the width and height of the displayed icon. The third and fourth value are the width and height of the rendered png image that is used for the icon. Generally, the third and fourth value should be large enough to render a ggplot2 graphic successfully. Only needed for the view mode.
 #' @import ggplot2
+#' @example ./examples/tm_flowers.R
 #' @export
 tm_flowers = function(parts = tmap::tm_vars(multivariate = TRUE),
-					 parts.scale = tm_scale_normalized(),
+					 parts.scale = tm_scale_multi(),
 					 parts.legend = tmap::tm_legend_hide(),
 					 parts.chart = tmap::tm_chart_none(),
 					 parts.free = NA,
@@ -117,7 +118,7 @@ tm_flowers = function(parts = tmap::tm_vars(multivariate = TRUE),
 		trans.aes = list(),
 		trans.args = options$trans.args,
 		trans.isglobal = FALSE,
-		mapping.aes = list(parts = tmap::tmapScale(aes = "num",
+		mapping.aes = list(parts = tmap::tmapScale(aes = "multi",
 												   value = parts,
 												   scale = parts.scale,
 												   legend = parts.legend,

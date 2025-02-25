@@ -1,12 +1,16 @@
 # envir = environment()
 .onLoad = function(...) {
-	parts_opts = list(value.const = "grey85",
-					  value.na = "grey75",
-					  value.blank = "#ffffff",
-					  values.var = "tol.muted",
-					  values.range = NA)
-	mapply(tmap::tmapAddLayerOptions, names(parts_opts), rep("parts", length(parts_opts)), parts_opts, SIMPLIFY = FALSE)
+	opts = list(value.const = 1,
+					  value.na = NULL,
+					  value.blank = 1,
+					  values.var = 1,
+					  values.range = c(0, 1))
+	mapply(tmap::tmapAddLayerOptions, names(opts), rep("comppart", length(opts)), opts, SIMPLIFY = FALSE)
 	
-	
-	
+	opts2 = list(value.const = 1,
+				value.na = NULL,
+				value.blank = 1,
+				values.var = 1,
+				values.range = c(0, 1))
+	mapply(tmap::tmapAddLayerOptions, names(opts2), rep("multi", length(opts2)), opts, SIMPLIFY = FALSE)
 } 
