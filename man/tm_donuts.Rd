@@ -61,6 +61,8 @@ tm_donuts(
 
 \item{inner}{proportion of the inner circle}
 
+\item{fill_hole}{should the hole be filled? Either `FALSE` or a fill color.}
+
 \item{points_only}{should only point geometries of the shape object (defined in [tm_shape()]) be plotted? By default `"ifany"`, which means `TRUE` in case a geometry collection is specified.}
 
 \item{point_per}{specification of how spatial points are mapped when the geometry is a multi line or a multi polygon. One of \code{"feature"}, \code{"segment"} or \code{"largest"}. The first generates a spatial point for every feature, the second for every segment (i.e. subfeature), the third only for the largest segment (subfeature). Note that the last two options can be significant slower.}

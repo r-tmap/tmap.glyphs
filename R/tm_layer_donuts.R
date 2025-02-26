@@ -62,6 +62,7 @@ opt_tm_donuts = function(start = 0,
 #' @param start starting angle of the pies. 0 means top
 #' @param direction direction in which the pies are stacked. 1 means clockwise, 0 counterclockwise
 #' @param inner proportion of the inner circle
+#' @param fill_hole should the hole be filled? Either `FALSE` or a fill color.
 #' @param points_only should only point geometries of the shape object (defined in [tm_shape()]) be plotted? By default `"ifany"`, which means `TRUE` in case a geometry collection is specified. 
 #' @param point_per specification of how spatial points are mapped when the geometry is a multi line or a multi polygon. One of \code{"feature"}, \code{"segment"} or \code{"largest"}. The first generates a spatial point for every feature, the second for every segment (i.e. subfeature), the third only for the largest segment (subfeature). Note that the last two options can be significant slower.
 #' @param on_surface In case of polygons, centroids are computed. Should the points be on the surface? If `TRUE`, which is slower than the default `FALSE`, centroids outside the surface are replaced with points computed with [sf::st_point_on_surface()].
