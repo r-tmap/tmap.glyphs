@@ -1,49 +1,49 @@
 #' @export
 #' @rdname tmapScaleComposition
-tmapValuesCheck_comppart = tmapValuesCheck_num
+tmapValuesCheck_comppart = tmap::tmapValuesCheck_size
 #' @export
 #' @rdname tmapScaleComposition
-tmapValuesIsDiv_comppart = tmapValuesIsDiv_num
+tmapValuesIsDiv_comppart = tmap::tmapValuesIsDiv_size
 #' @export
 #' @rdname tmapScaleComposition
-tmapValuesRange_comppart = tmapValuesRange_num
+tmapValuesRange_comppart = tmap::tmapValuesRange_size
 #' @export
 #' @rdname tmapScaleComposition
-tmapValuesVV_comppart = tmapValuesVV_num
+tmapValuesVV_comppart = tmap::tmapValuesVV_size
 #' @export
 #' @rdname tmapScaleComposition
-tmapValuesSubmit_comppart = tmapValuesSubmit_num
+tmapValuesSubmit_comppart = tmap::tmapValuesSubmit_size
 #' @export
 #' @rdname tmapScaleComposition
-tmapValuesScale_comppart = tmapValuesScale_num
+tmapValuesScale_comppart = tmap::tmapValuesScale_size
 #' @export
 #' @rdname tmapScaleComposition
-tmapValuesColorize_comppart = tmapValuesColorize_num
+tmapValuesColorize_comppart = tmap::tmapValuesColorize_size
 #' @export
 #' @rdname tmapScaleComposition
-tmapValuesCVV_comppart = tmapValuesCVV_num
+tmapValuesCVV_comppart = tmap::tmapValuesCVV_size
 
 #' @export
 #' @rdname tmapScaleMulti
-tmapValuesCheck_multi = tmapValuesCheck_num
+tmapValuesCheck_multi = tmap::tmapValuesCheck_size
 #' @export
 #' @rdname tmapScaleMulti
-tmapValuesIsDiv_multi = tmapValuesIsDiv_num
+tmapValuesIsDiv_multi = tmap::tmapValuesIsDiv_size
 #' @export
 #' @rdname tmapScaleMulti
-tmapValuesRange_multi = tmapValuesRange_num
+tmapValuesRange_multi = tmap::tmapValuesRange_size
 #' @export
 #' @rdname tmapScaleMulti
-tmapValuesVV_multi = tmapValuesVV_num
+tmapValuesVV_multi = tmap::tmapValuesVV_size
 #' @export
 #' @rdname tmapScaleMulti
-tmapValuesSubmit_multi = tmapValuesSubmit_num
+tmapValuesSubmit_multi = tmap::tmapValuesSubmit_size
 #' @export
 #' @rdname tmapScaleMulti
-tmapValuesScale_multi = tmapValuesScale_num
+tmapValuesScale_multi = tmap::tmapValuesScale_size
 #' @export
 #' @rdname tmapScaleMulti
-tmapValuesColorize_multi = tmapValuesColorize_num
+tmapValuesColorize_multi = tmap::tmapValuesColorize_size
 #' @export
 #' @rdname tmapScaleMulti
-tmapValuesCVV_multi = tmapValuesCVV_num
+tmapValuesCVV_multi = tmap::tmapValuesCVV_size
