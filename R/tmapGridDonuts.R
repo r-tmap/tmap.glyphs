@@ -10,6 +10,7 @@ tmapGridDonuts = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, 
 	tmapXDonuts(gs = "Grid", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
 
+#' @export
 #' @rdname tmapGridDonuts
 tmapLeafletDonuts = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	tmapXDonuts(gs = "Leaflet", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)

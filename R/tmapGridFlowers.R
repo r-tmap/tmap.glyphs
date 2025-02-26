@@ -10,6 +10,7 @@ tmapGridFlowers = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	tmapXFlowers(gs = "Grid", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
 
+#' @export
 #' @rdname tmapGridFlowers
 tmapLeafletFlowers = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	tmapXFlowers(gs = "Leaflet", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
