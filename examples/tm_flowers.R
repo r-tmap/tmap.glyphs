@@ -19,8 +19,6 @@ World$norm_inequality = q(((65 - World$inequality) / 65))
 World$norm_press = q(1 - ((100 - World$press) / 100))
 World$norm_gender = q(1 - World$gender)
 
-
-
 W = World[unlist(y), ]
 W$geometry = x
 
@@ -32,6 +30,3 @@ tm_shape(World) +
 			   size = 1.5, popup.vars = c("norm_gender", "norm_press", "norm_footprint", "norm_well_being","norm_inequality"), id = "name") +
 	tm_basemap(NULL) +
 	tm_layout(bg.color = "grey90")
-
-tm_shape(World) +
-	tm_polygons(c("norm_well_being", "norm_footprint", "norm_inequality", "norm_press", "norm_gender"))
