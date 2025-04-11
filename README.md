@@ -22,7 +22,7 @@ Installation
 ```r
 # install.packages("remotes")
 install_github("r-tmap/tmap")
-install_github("r-tmap/tmap.deckgl")
+install_github("r-tmap/tmap.glyphs")
 ```
 
 Example
