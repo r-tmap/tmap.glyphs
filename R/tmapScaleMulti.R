@@ -34,10 +34,9 @@ tmapScaleMulti = function(..., scale, legend, chart, o, aes, layer, layer_args, 
 		value.na = do.call(mfun, list(x = value.na, args = layer_args))
 		value.neutral = do.call(mfun, list(x = value.neutral, args = layer_args))
 		
-		#totals = Reduce("+", args)
-		#mx = max(totals, na.rm = TRUE)
-		#val_list = lapply(args, function(a) a / mx)
-		
+		# normalise
+		mx = max(sapply(args, max, na.rm = TRUE, USE.NAMES = FALSE), na.rm = TRUE)
+		args = lapply(args, function(x) x/mx)
 		
 		anyna = Reduce("|", lapply(args, is.na))
 
