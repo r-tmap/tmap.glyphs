@@ -86,7 +86,7 @@ donutGrob = function(df, opts = list(inner = 0.4, direction = 1, start = 0)) {
 	}
 	
 	# Combine all grobs into a single gTree object
-	grid::gTree(children = do.call(grid::gList, grob_list), vp = grid::viewport(width = unit(1, "snpc"), height = unit(1, "snpc"), xscale = c(-1, 1), yscale = c(-1, 1)))
+	grid::gTree(children = do.call(grid::gList, grob_list), vp = grid::viewport(width = grid::unit(1, "snpc"), height = grid::unit(1, "snpc"), xscale = c(-1, 1), yscale = c(-1, 1)))
 }
 
 
@@ -150,8 +150,8 @@ flowerGrob <- function(df, opts = list(scale = 0.5,
 				y_coords <- c(y, b1_y, b3_y, tip_y, b4_y, b2_y, y)
 				
 				grid::xsplineGrob(
-					x = unit(x_coords, "npc"),
-					y = unit(y_coords, "npc"),
+					x = grid::unit(x_coords, "npc"),
+					y = grid::unit(y_coords, "npc"),
 					shape = as.numeric(shape_factor),
 					open = FALSE,
 					gp = gp,
