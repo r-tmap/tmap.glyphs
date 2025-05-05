@@ -6,16 +6,18 @@ LazyData: true
 Authors@R: c(
 	person("Martijn", "Tennekes", email = "mtennekes@gmail.com", role = c("aut", "cre"))
 	)
-Description: New layer functions are available for tmap that enable glyph maps.
+Description: New layer functions available for 'tmap' that are used to create glyph maps.
 Version: 0.1
-Date: 2024-06-11
+Date: 2025-05-05
 Encoding: UTF-8
 Depends:
     R (>= 3.5.0),
 Imports:
-    tmap (>= 3.99),
-    ggplot2,
+    tmap (>= 4.0),
     data.table
-URL: https://github.com/r-tmap/tmap.glyphs
-BugReports: https://github.com/r-tmap/glyphs/issues
+Config/Needs/check: Nowosad/spDataLarge, lwgeom, r-tmap/tmap
+Config/Needs/coverage: Nowosad/spDataLarge, lwgeom
+Config/Needs/website: bookdown, rmarkdown, r-tmap/tmap
+URL: https://github.com/r-tmap/tmap.glyphs, https://r-tmap.github.io/tmap.glyphs/
+BugReports: https://github.com/r-tmap/tmap.glyphs/issues
 RoxygenNote: 7.3.2

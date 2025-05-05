@@ -1,0 +1,46 @@
+url: https://r-tmap.github.io/tmap.glyphs/
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#5f8640"
+
+# figures:
+  dev: ragg::agg_png
+  dpi: 300
+
+development:
+  version_tooltip: "tmap.glyphs documentation"
+
+reference:
+
+- title: Glyphs package
+  contents:
+  - tmap.glyphs-package
+
+- title: Map layer: donuts
+  contents:
+  - tm_donuts
+  
+- title: Map layer: flowers
+  contents:
+  - tm_flowers
+
+- title: Composition scale
+  contents:
+  - tm_scale_composition
+
+- title: Multivariate scale
+  contents:
+  - tm_scale_multi
+
+navbar:
+  structure:
+    left:  [reference, donuts, flowers, news]
+  components:
+    home: ~
+    donuts:
+      text: Donut maps
+      href: articles/donuts
+    flowers: 
+      text: Flower maps
+      href: articles/flowers

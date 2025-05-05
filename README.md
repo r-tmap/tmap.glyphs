@@ -1,60 +1,45 @@
-# tmap.glyphs
 
-A new layer! tmap contains a standard set of layer functions, `tm_polygons()`, `tm_symbols()`, etc.
-This extension package features a new layer function, `tm_donuts`. In the future, more layer functions are expected, e.g. `tm_pies`.
+# tmap.glyphs: glyphs in tmap
 
-The aim of this package is not just the extension itself, but also an example of how tmap can be extended.
+<!-- badges: start -->
 
-Note: this package is still a bit slow, because the donuts are rendered using `ggplot2`. Using the `grid` package directly would improve the running time.
+[![R-CMD-check](https://github.com/r-tmap/tmap.glyphs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-tmap/tmap/actions/workflows/R-CMD-check.yaml)
+[![CRAN](https://www.r-pkg.org/badges/version/tmap.glyphs)](https://cran.r-project.org/package=tmap.glyphs)
+[![CRAN
+checks](https://cranchecks.info/badges/worst/tmap.glyphs)](https://cran.r-project.org/web/checks/check_results_tmap.glyphs.html)
+[![Downloads](https://cranlogs.r-pkg.org/badges/tmap.glyphs?color=brightgreen)](https://www.r-pkg.org:443/pkg/tmap.glyphs)
+[![License](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html)
+[![r-universe](https://r-tmap.r-universe.dev/badges/tmap.glyphs)](https://r-tmap.r-universe.dev/tmap.glyphs)
+<!-- badges: end -->
 
+Provides new layer functions for **tmap** to create various types of
+glyph maps
 
-What are glyphs?
------------
+## Installation
 
-Generally speaking, a glyph is visual representation. One of the oldest examples are Egyptian hieroglyphs.
+Installation of **tmap.glpyhs** is straightforward:
 
-In the context of thematic maps, glyphs are small visualizations plotted at specific geographic locations, which are typically spatial points or spatial polygons. In the latter case, centroids are computed (just like `tm_symbols`).
+``` r
+install.packages("tmap.glyphs")
+```
 
+### Development version
 
-Installation
-------------
-
-```r
+``` r
 # install.packages("remotes")
-install_github("r-tmap/tmap")
-install_github("r-tmap/tmap.deckgl")
+remotes::install_github("r-tmap/tmap.glyphs")
+
+# On Linux, with pak
+# install.packages("pak")
+pak::pak("r-tmap/tmap.glyphs")
+
+# Or from r-universe
+install.packages("tmap.glyphs", repos = c("https://r-tmap.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
-Example
-------------
+For the development version, it is also recommended to install the
+development version of [tmap](https://r-tmap.github.io/tmap/) as well.
 
+## Getting started
 
-```r
-library(tmap)
-library(tmap.glyphs)
-
-data(NLD_muni)
-
-ZH_muni = NLD_muni[NLD_muni$province == "Zuid-Holland", ]
-ZH_muni$income_middle = 100 - ZH_muni$income_high - ZH_muni$income_low
-```
-
-The plot uses an additional visual variable, called `parts`. This should be specified by `tm_vars` with `multivariate = TRUE`.
-
-```r
-tm_shape(ZH_muni) +
-	tm_polygons() +
-	tm_donuts(parts = tm_vars(c("income_low", "income_middle", "income_high"), multivariate = TRUE),
-			  fill.scale = tm_scale_categorical(values = "-pu_gn_div"),			  
-			  size = "population",
-			  size.scale = tm_scale_continuous(ticks = c(50000, 100000, 250000, 500000)))	
-```
-
-Plot mode:
-
-![tmap gylphs, plot mode](figures/tmapglyphs1.png)
-
-View mode:
-
-![tmap gylphs, view mode](figures/tmapglyphs2.png)
-
+See <https://r-tmap.github.io/tmap.glpyhs>
