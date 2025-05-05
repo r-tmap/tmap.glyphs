@@ -17,11 +17,11 @@ reference:
   contents:
   - tmap.glyphs-package
 
-- title: Map layer: donuts
+- title: Map layer donuts
   contents:
   - tm_donuts
   
-- title: Map layer: flowers
+- title: Map layer flowers
   contents:
   - tm_flowers
 
