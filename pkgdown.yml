@@ -1,0 +1,10 @@
+pandoc: 3.1.11
+pkgdown: 2.1.2
+pkgdown_sha: ~
+articles:
+  donuts: donuts.html
+  flowers: flowers.html
+last_built: 2025-05-05T08:50Z
+urls:
+  reference: https://r-tmap.github.io/tmap.glyphs/reference
+  article: https://r-tmap.github.io/tmap.glyphs/articles
