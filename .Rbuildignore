@@ -17,3 +17,6 @@ README
 ^\.covrignore$
 ^vignettes$
 ^CRAN-SUBMISSION$
+sandbox
+figures
+local

@@ -1,19 +1,18 @@
 Package: tmap.glyphs
 License: GPL-3
-Title: Extension for 'tmap': glyphs can be created
+Title: Extension to 'tmap' for Creating Glyphs
 Type: Package
 LazyData: true
 Authors@R: c(
 	person("Martijn", "Tennekes", email = "mtennekes@gmail.com", role = c("aut", "cre"))
 	)
-Description: New layer functions available for 'tmap' that are used to create glyph maps.
+Description: Provides new layer functions to tmap for drawing glyphs. A glyph is a small chart (e.g., donut chart) shown at specific map locations to visualize multivariate or time-series data. The functions work with tmap's syntax and allow flexible control over size, layout, and appearance.
 Version: 0.1
-Date: 2025-05-05
 Encoding: UTF-8
 Depends:
     R (>= 3.5.0),
 Imports:
-    tmap (>= 4.0),
+    tmap (>= 4.1),
     data.table
 Config/Needs/check: Nowosad/spDataLarge, lwgeom, r-tmap/tmap
 Config/Needs/coverage: Nowosad/spDataLarge, lwgeom
