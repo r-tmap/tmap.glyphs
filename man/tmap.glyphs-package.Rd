@@ -4,7 +4,7 @@
 \name{tmap.glyphs-package}
 \alias{tmap.glyphs}
 \alias{tmap.glyphs-package}
-\title{Extension for tmap: glyphs can be created}
+\title{Extension for 'tmap': glyphs can be created}
 \description{
 New layer functions available for 'tmap' that are used to create glyph maps.
 }

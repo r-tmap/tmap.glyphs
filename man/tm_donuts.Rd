@@ -119,6 +119,9 @@ In that case, each list of formatting options is applied to the named variable.}
 
 \item{fill, fill.scale, fill.legend, fill.chart, fill.free}{Visual variable that determines the fill color. See details.}
 }
+\value{
+a [tmap::tmap-element], supposed to be stacked after [tmap::tm_shape()] using the `+` operator. The `opt_<layer_function>` function returns a list that should be passed on to the `options` argument.
+}
 \description{
 Map layer that draw donuts as glyphs
 }

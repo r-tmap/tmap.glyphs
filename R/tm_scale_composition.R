@@ -17,6 +17,7 @@
 #' @param label.null (generic scale argument) Label for null (out-of-scope) values
 #' @export
 #' @import data.table
+#' @return tmap scale object to be used for the `.scale` arguments in the tmap layer functions
 #' @name tm_scale_composition
 #' @rdname tm_scale_composition
 tm_scale_composition = function(

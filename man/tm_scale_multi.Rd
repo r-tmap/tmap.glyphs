@@ -38,6 +38,9 @@ tm_scale_multi(
 
 \item{label.null}{(generic scale argument) Label for null (out-of-scope) values}
 }
+\value{
+tmap scale object to be used for the `.scale` arguments in the tmap layer functions
+}
 \description{
 Scales in tmap are configured by the family of functions with prefix `tm_scale`.
 Such function should be used for the input of the `.scale` arguments in the

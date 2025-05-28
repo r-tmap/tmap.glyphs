@@ -5,6 +5,7 @@
 #' @param ... variables
 #' @param scale,legend,chart,o,aes,layer,layer_args,sortRev,bypass_ord,submit_legend arguments to be described
 #' @export
+#' @return internal tmap object
 #' @keywords internal
 tmapScaleComposition = function(..., scale, legend, chart, o, aes, layer, layer_args, sortRev, bypass_ord, submit_legend = TRUE) {
 	args = list(...)

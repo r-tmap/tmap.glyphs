@@ -59,6 +59,9 @@ tmapValuesCVV_comppart(x, value.na, n, range, scale, rep, o)
 
 \item{scale, legend, chart, o, aes, layer, layer_args, sortRev, bypass_ord, submit_legend}{arguments to be described}
 }
+\value{
+internal tmap object
+}
 \description{
 Internal method for tm_scale_composition
 }

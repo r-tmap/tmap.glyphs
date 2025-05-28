@@ -15,6 +15,7 @@
 #' @param labels (generic scale argument) Labels
 #' @param label.na (generic scale argument) Label for missing values
 #' @param label.null (generic scale argument) Label for null (out-of-scope) values
+#' @return tmap scale object to be used for the `.scale` arguments in the tmap layer functions
 #' @export
 #' @import data.table
 #' @name tm_scale_multi

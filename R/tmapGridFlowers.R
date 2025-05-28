@@ -4,6 +4,7 @@
 #'  
 #' @param shpTM,dt,gp,bbx,facet_row,facet_col,facet_page,id,pane,group,o,... to be described
 #' @export
+#' @return internal tmap object
 #' @importFrom utils head
 #' @keywords internal
 tmapGridFlowers = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {

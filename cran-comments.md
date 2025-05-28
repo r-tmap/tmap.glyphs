@@ -2,6 +2,11 @@
 
 This is a new package
 
+## Resubmission note
+
+* Added single quotes to tmap in title and description
+* Added \value to .Rd files
+
 ## Test environments
 * macOS (devel and release)
 * windows (devel and release)

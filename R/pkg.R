@@ -1,4 +1,4 @@
-#' Extension for tmap: glyphs can be created
+#' Extension for 'tmap': glyphs can be created
 #'
 #' New layer functions available for 'tmap' that are used to create glyph maps.
 #'
