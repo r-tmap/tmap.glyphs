@@ -1,5 +1,5 @@
 
-# tmap.glyphs: glyphs in tmap
+# tmap.glyphs: glyphs in tmap <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 
@@ -13,7 +13,10 @@ checks](https://cranchecks.info/badges/worst/tmap.glyphs)](https://cran.r-projec
 <!-- badges: end -->
 
 Provides new layer functions for **tmap** to create various types of
-glyph maps
+glyph maps. A glyph is a small chart (e.g., donut chart) shown at
+specific map locations to visualize multivariate or time-series data.
+The functions work with the syntax of **tmap** and allow flexible
+control over size, layout, and appearance.
 
 ## Installation
 

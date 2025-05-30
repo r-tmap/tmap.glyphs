@@ -47,7 +47,7 @@ knitr::knit_hooks$set(output = function(x, options) {
 [![r-universe](https://r-tmap.r-universe.dev/badges/tmap.glyphs)](https://r-tmap.r-universe.dev/tmap.glyphs)
 <!-- badges: end -->
 
-Provides new layer functions for **tmap** to create various types of glyph maps
+Provides new layer functions for **tmap** to create various types of glyph maps. A glyph is a small chart (e.g., donut chart) shown at specific map locations to visualize multivariate or time-series data. The functions work with the syntax of **tmap** and allow flexible control over size, layout, and appearance.
 
 ## Installation
 
