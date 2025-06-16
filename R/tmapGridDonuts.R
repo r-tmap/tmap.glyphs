@@ -1,18 +1,13 @@
-#' Internal methods for tm_donuts
-#' 
-#' Internal methods for tm_donuts
-#'  
-#' @param shpTM,dt,gp,bbx,facet_row,facet_col,facet_page,id,pane,group,o,... to be described
 #' @export
-#' @return internal tmap object
-#' @importFrom utils head
 #' @keywords internal
+#' @rdname internals_glyphs
 tmapGridDataPlot.tm_data_donuts = function(a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	tmapXDonuts(gs = "Grid", a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
 
 #' @export
 #' @keywords internal
+#' @rdname internals_glyphs
 tmapLeafletDataPlot.tm_data_donuts = function(a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	tmapXDonuts(gs = "Leaflet", a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
