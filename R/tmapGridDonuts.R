@@ -7,26 +7,23 @@
 #' @return internal tmap object
 #' @importFrom utils head
 #' @keywords internal
-tmapGridDonuts = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
-	tmapXDonuts(gs = "Grid", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
+tmapGridDataPlot.tm_data_donuts = function(a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+	tmapXDonuts(gs = "Grid", a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
 
 #' @export
-#' @rdname tmapGridDonuts
-tmapLeafletDonuts = function(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
-	tmapXDonuts(gs = "Leaflet", shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
+#' @keywords internal
+tmapLeafletDataPlot.tm_data_donuts = function(a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+	tmapXDonuts(gs = "Leaflet", a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
 
 	
-tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+tmapXDonuts = function(gs, a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	ymin = NULL
 	ymax = NULL
 	lwd = NULL
 	shape = NULL
 	parts = NULL
-	
-	layer_args = list(...)
-	
 	
 	val_list = decode_mv(dt$parts, digits = 5)
 	n = length(val_list)
@@ -57,14 +54,14 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	
 	grobs <- structure(lapply(split(dat, dat$id), function(x) {
 		if (any(is.na(x$perc))) return(NULL)
-		donutGrob(x, layer_args)
+		donutGrob(x, a)
 	}), class = "tmapSpecial")
 	
 	values_shapes = rep(NA_integer_, total)
 	
 	sel = which(!is.na(val_list[[1]]))
 	if (length(sel)) {
-		values_shapes[sel] = do.call("tmapValuesSubmit_shape", list(x = grobs[sel], args = layer_args))
+		values_shapes[sel] = do.call("tmapValuesSubmit_shape", list(x = grobs[sel], args = a))
 	}
 	
 	gp$col = NA
@@ -74,9 +71,9 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	dt[, parts:=NULL]
 	dt[, fill:=NULL]
 	
-	fun = paste0("tmap", gs, "Symbols")
+	fun = paste0("tmap", gs, "DataPlot")
 	
-	value_neutral = do.call("tmapValuesSubmit_shape", list(x = grobs[1], args = layer_args))
+	value_neutral = do.call("tmapValuesSubmit_shape", list(x = grobs[1], args = a))
 
 	
 	# # update legends:
@@ -90,6 +87,7 @@ tmapXDonuts = function(gs, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page,
 	# 
 	# 
 	# assign("legs", legs_cached, envir = .TMAP)
+	class(a) = c("tm_data_symbols", "list")
 	
-	do.call(fun, c(list(shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o), layer_args))
+	do.call(fun, c(list(a, shpTM = shpTM, dt = dt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, o = o), list(...)))
 }
