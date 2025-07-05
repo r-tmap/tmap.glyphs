@@ -7,7 +7,7 @@
 \alias{tmapLeafletDataPlot.tm_data_flowers}
 \title{Internal methods for tm_flowers}
 \usage{
-\method{tmapGridDataPlot}{tm_data_donuts}(
+tmapGridDataPlot.tm_data_donuts(
   a,
   shpTM,
   dt,
@@ -23,7 +23,7 @@
   ...
 )
 
-\method{tmapLeafletDataPlot}{tm_data_donuts}(
+tmapLeafletDataPlot.tm_data_donuts(
   a,
   shpTM,
   dt,
@@ -39,7 +39,7 @@
   ...
 )
 
-\method{tmapGridDataPlot}{tm_data_flowers}(
+tmapGridDataPlot.tm_data_flowers(
   a,
   shpTM,
   dt,
@@ -55,7 +55,7 @@
   ...
 )
 
-\method{tmapLeafletDataPlot}{tm_data_flowers}(
+tmapLeafletDataPlot.tm_data_flowers(
   a,
   shpTM,
   dt,
