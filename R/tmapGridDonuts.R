@@ -83,6 +83,6 @@ tmapXDonuts = function(gs, a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_pa
 	# 
 	# assign("legs", legs_cached, envir = .TMAP)
 	class(a) = c("tm_data_symbols", "list")
-	
+
 	do.call(fun, c(list(a, shpTM = shpTM, dt = dt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, o = o), list(...)))
 }
