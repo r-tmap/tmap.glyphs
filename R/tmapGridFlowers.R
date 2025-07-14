@@ -6,8 +6,10 @@
 #' @export
 #' @return internal tmap object
 #' @importFrom utils head
+#' @import tmap
 #' @keywords internal
 #' @rdname internals_glyphs
+#' @method tmapGridDataPlot tm_data_flowers
 tmapGridDataPlot.tm_data_flowers = function(a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	tmapXFlowers(gs = "Grid", a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
@@ -15,7 +17,8 @@ tmapGridDataPlot.tm_data_flowers = function(a, shpTM, dt, gp, bbx, facet_row, fa
 #' @keywords internal
 #' @export
 #' @rdname internals_glyphs
-tmapLeafletDataPlot.tm_data_flowers = function(a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+#' @method tmapLeafletDataPlot tm_data_flowers
+tmapLeafletDataPlot.tm_data_flowers = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)  {
 	tmapXFlowers(gs = "Leaflet", a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
 }
 
