@@ -1,4 +1,37 @@
 #' @rdname tm_donuts
+#' @name opt_tm_pies
+#' @export
+opt_tm_pies = function(start = 0,
+						 direction = 1,
+						 inner = 0,
+						 fill_hole = FALSE,
+						 points_only = "ifany",
+						 point_per = "feature",
+						 on_surface = FALSE,
+						 icon.scale = 6,
+						 just = NA,
+						 grob.dim = c(width=48, height=48, render.width=256, render.height=256)) {
+	list(mapping.args = list(icon.scale = icon.scale,
+							 just = just,
+							 start = start,
+							 direction = direction,
+							 inner = inner,
+							 fill_hole = fill_hole,
+							 grob.dim = grob.dim),
+		 trans.args = list(points_only = points_only,
+		 				  point_per = point_per,
+		 				  on_surface = on_surface))
+}
+
+#' @export
+#' @param ... passed on to `tm_donuts`
+#' @rdname tm_donuts
+tm_pies = function(..., options = opt_tm_pies()) {
+	args = list(...)
+	do.call(tm_donuts, c(args, list(options = options)))
+}
+
+#' @rdname tm_donuts
 #' @name opt_tm_donuts
 #' @export
 opt_tm_donuts = function(start = 0,
@@ -24,10 +57,9 @@ opt_tm_donuts = function(start = 0,
 }
 
 
-
-#' Map layer: donuts
+#' Map layer: donuts and pies
 #' 
-#' Map layer that draw donuts as glyphs
+#' Map layer that draw donuts or pies as glyphs
 #' 
 #' @param parts,parts.scale,parts.legend,parts.chart,parts.free Variables that determine the size of the parts
 #' @param size,size.scale,size.legend,size.chart,size.free Variables that determine the size of the donut
