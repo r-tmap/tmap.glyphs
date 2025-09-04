@@ -1,5 +1,5 @@
 ---
-title: "Flower glyphs"
+title: "Flower maps"
 output: 
   bookdown::html_vignette2:
 bibliography: '`r system.file("tmap.bib", package="tmap")`'

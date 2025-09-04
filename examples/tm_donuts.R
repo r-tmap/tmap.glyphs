@@ -26,5 +26,4 @@ tm_shape(ZH_muni) +
 			  fill.scale = tm_scale_categorical(values = "-pu_gn_div"),			  
 			  size = "population",
 			  lwd = 1,
-			  size.scale = tm_scale_continuous(ticks = c(50000, 100000, 250000, 500000)),
-			  options = opt_tm_donuts(fill_hole = FALSE))
+			  size.scale = tm_scale_continuous(ticks = c(50000, 100000, 250000, 500000)))
