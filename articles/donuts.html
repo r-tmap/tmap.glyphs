@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Donut glyphs • tmap.glyphs</title>
+<title>Donut and pie maps • tmap.glyphs</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Donut glyphs">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Donut and pie maps">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -50,7 +50,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Donut glyphs</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Donut and pie maps</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/r-tmap/tmap.glyphs/blob/main/vignettes/donuts.Rmd" class="external-link"><code>vignettes/donuts.Rmd</code></a></small>
@@ -63,33 +63,81 @@
 represent data values at specific geographic locations. Each glyph can
 encode multiple data variables.</p>
 <p>With the extension package <a href="https://github.com/r-tmap/tmap.glyphs/" class="external-link"><strong>tmap.glyphs</strong></a>
-(in development) glyphs can be created. Currently only the donut and
-flower glyphs are implemented.</p>
-<div class="section level2">
-<h2 id="donut-maps">Donut maps<a class="anchor" aria-label="anchor" href="#donut-maps"></a>
-</h2>
+(in development) glyphs can be created. Currently the donut, the pie and
+the flower glyphs are implemented. More will follow.</p>
+<p>In this example we explore the proportion of low, middle and high
+incomes in Zuid-Holland, a province of the Netherlands (including The
+Hague and Rotterdam). We use the dataset <code>NLD_muni</code> from
+<code>tmap</code>, where we apply a filter and subsequently derive the
+percentage of middle income:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ZH_muni</span> <span class="op">=</span> <span class="va">NLD_muni</span><span class="op">[</span><span class="va">NLD_muni</span><span class="op">$</span><span class="va">province</span> <span class="op">==</span> <span class="st">"Zuid-Holland"</span>, <span class="op">]</span></span>
-<span></span>
-<span><span class="va">ZH_muni</span><span class="op">$</span><span class="va">income_middle</span> <span class="op">=</span> <span class="fl">100</span> <span class="op">-</span> <span class="va">ZH_muni</span><span class="op">$</span><span class="va">income_high</span> <span class="op">-</span> <span class="va">ZH_muni</span><span class="op">$</span><span class="va">income_low</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">ZH_muni</span><span class="op">$</span><span class="va">population</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">ZH_muni</span><span class="op">$</span><span class="va">population</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">26</span><span class="op">)</span><span class="op">]</span> <span class="op">=</span> <span class="fl">500000</span></span>
-<span></span>
-<span><span class="va">ZH_muni</span><span class="op">$</span><span class="va">income_high</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span> <span class="op">=</span> <span class="cn">NA</span></span>
-<span></span>
-<span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">ZH_muni</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="va">ZH_muni</span><span class="op">$</span><span class="va">income_middle</span> <span class="op">=</span> <span class="fl">100</span> <span class="op">-</span> <span class="va">ZH_muni</span><span class="op">$</span><span class="va">income_high</span> <span class="op">-</span> <span class="va">ZH_muni</span><span class="op">$</span><span class="va">income_low</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="pie-maps">Pie maps<a class="anchor" aria-label="anchor" href="#pie-maps"></a>
+</h2>
+<p>Pie maps are (just) a special case of donut maps.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">ZH_muni</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_polygons.html" class="external-link">tm_polygons</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/tm_donuts.html">tm_donuts</a></span><span class="op">(</span>parts <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_vars.html" class="external-link">tm_vars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income_low"</span>, <span class="st">"income_middle"</span>, <span class="st">"income_high"</span><span class="op">)</span>, multivariate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/tm_donuts.html">tm_pies</a></span><span class="op">(</span>parts <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_vars.html" class="external-link">tm_vars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income_low"</span>, <span class="st">"income_middle"</span>, <span class="st">"income_high"</span><span class="op">)</span>, multivariate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>    fill.scale <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_scale_categorical.html" class="external-link">tm_scale_categorical</a></span><span class="op">(</span>values <span class="op">=</span> <span class="st">"-pu_gn_div"</span><span class="op">)</span>,             </span>
 <span>    size <span class="op">=</span> <span class="st">"population"</span>,</span>
 <span>    lwd <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>    size.scale <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_scale_continuous.html" class="external-link">tm_scale_continuous</a></span><span class="op">(</span>ticks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50000</span>, <span class="fl">100000</span>, <span class="fl">250000</span>, <span class="fl">500000</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    options <span class="op">=</span> <span class="fu"><a href="../reference/tm_donuts.html">opt_tm_donuts</a></span><span class="op">(</span>fill_hole <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="donuts_files/figure-html/unnamed-chunk-3-1.png" width="768"></p>
+<span>    size.scale <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_scale_continuous.html" class="external-link">tm_scale_continuous</a></span><span class="op">(</span>ticks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50000</span>, <span class="fl">100000</span>, <span class="fl">250000</span>, <span class="fl">500000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="donuts_files/figure-html/unnamed-chunk-4-1.png" width="768"></p>
+<p>Explanation:</p>
+<ul>
+<li>The visual variable <code>parts</code> is needed to determine the
+cut the pies. Note that a multivariate variable is required (see <a href="https://r-tmap.github.io/tmap/articles/adv_multivariate" class="external-link">vignette</a>).</li>
+<li>The fill colors of the parts are specified via
+<code>fill.scale</code> (and not via <code>parts</code>). The used scale
+should be a categorical; each part represents a category.</li>
+<li>The visual variable <code>size</code> represents the overall sizes
+of the pies.</li>
+</ul>
 </div>
-  </main>
+<div class="section level2">
+<h2 id="donut-maps">Donut maps<a class="anchor" aria-label="anchor" href="#donut-maps"></a>
+</h2>
+<p>Pies are just a specific case of the more general donuts.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">ZH_muni</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_polygons.html" class="external-link">tm_polygons</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/tm_donuts.html">tm_donuts</a></span><span class="op">(</span></span>
+<span>    parts <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_vars.html" class="external-link">tm_vars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income_low"</span>, <span class="st">"income_middle"</span>, <span class="st">"income_high"</span><span class="op">)</span>, multivariate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    fill.scale <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_scale_categorical.html" class="external-link">tm_scale_categorical</a></span><span class="op">(</span>values <span class="op">=</span> <span class="st">"-pu_gn_div"</span><span class="op">)</span>,             </span>
+<span>    size <span class="op">=</span> <span class="st">"population"</span>,</span>
+<span>    lwd <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    size.scale <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_scale_continuous.html" class="external-link">tm_scale_continuous</a></span><span class="op">(</span>ticks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50000</span>, <span class="fl">100000</span>, <span class="fl">250000</span>, <span class="fl">500000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="donuts_files/figure-html/unnamed-chunk-5-1.png" width="768"></p>
+<p>Via the argument <code>options</code>, several properties of the
+donuts can be specified:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="va">ZH_muni</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_polygons.html" class="external-link">tm_polygons</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/tm_donuts.html">tm_donuts</a></span><span class="op">(</span></span>
+<span>    parts <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_vars.html" class="external-link">tm_vars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income_low"</span>, <span class="st">"income_middle"</span>, <span class="st">"income_high"</span><span class="op">)</span>, multivariate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    fill.scale <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_scale_categorical.html" class="external-link">tm_scale_categorical</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"limegreen"</span>, <span class="st">"steelblue"</span>, <span class="st">"brown"</span><span class="op">)</span>, value.neutral <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span>,           </span>
+<span>    size <span class="op">=</span> <span class="st">"population"</span>,</span>
+<span>    lwd <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    size.scale <span class="op">=</span> <span class="fu"><a href="https://r-tmap.github.io/tmap/reference/tm_scale_continuous.html" class="external-link">tm_scale_continuous</a></span><span class="op">(</span>ticks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50000</span>, <span class="fl">100000</span>, <span class="fl">250000</span>, <span class="fl">500000</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    options <span class="op">=</span> <span class="fu"><a href="../reference/tm_donuts.html">opt_tm_donuts</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fl">45</span>, direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, inner <span class="op">=</span> <span class="fl">0.2</span>, fill_hole <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="donuts_files/figure-html/unnamed-chunk-6-1.png" width="768"></p>
+<p>Explanation:</p>
+<ul>
+<li>
+<code>value.neutral</code> is used for legends of other visual
+variables (in this case size). See <a href="https://r-tmap.github.io/tmap/articles/adv_legends#neutral-values" class="external-link">vignette
+on neutral values</a>
+</li>
+<li>For each tmap layer, <code>options</code> is used for option
+specific settings. The default list is obtained via
+<code>opt_tm_&lt;layer&gt;</code>.</li>
+</ul>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
