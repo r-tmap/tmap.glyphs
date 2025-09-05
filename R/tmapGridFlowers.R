@@ -11,7 +11,7 @@
 #' @rdname internals_glyphs
 #' @method tmapGridDataPlot tm_data_flowers
 tmapGridDataPlot.tm_data_flowers = function(a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
-	tmapXFlowers(gs = "Grid", a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
+	tmapXFlowers(gs = "Grid", a = a, shpTM = shpTM, dt = dt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, o = o, ...)
 }
 
 #' @keywords internal
@@ -19,11 +19,11 @@ tmapGridDataPlot.tm_data_flowers = function(a, shpTM, dt, gp, bbx, facet_row, fa
 #' @rdname internals_glyphs
 #' @method tmapLeafletDataPlot tm_data_flowers
 tmapLeafletDataPlot.tm_data_flowers = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)  {
-	tmapXFlowers(gs = "Leaflet", a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...)
+	tmapXFlowers(gs = "Leaflet", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, o = o, ...)
 }
 
 
-tmapXFlowers = function(gs, a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+tmapXFlowers = function(gs, a, shpTM, dt, pdt = NULL, popup.format = list(), hdt = NULL, idt = NULL, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
 	ymin = NULL
 	ymax = NULL
 	lwd = NULL
@@ -96,5 +96,5 @@ tmapXFlowers = function(gs, a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_p
 	# assign("legs", legs_cached, envir = .TMAP)
 	class(a) = c("tm_data_symbols", "list")
 	
-	do.call(fun, c(list(a, shpTM = shpTM, dt = dt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, o = o), list(...)))
+	do.call(fun, c(list(a, shpTM = shpTM, dt = dt, gp = gp, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, o = o), list(...)))
 }
