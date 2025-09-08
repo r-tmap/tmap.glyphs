@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   donuts: donuts.html
   flowers: flowers.html
-last_built: 2025-09-05T15:33Z
+last_built: 2025-09-08T21:04Z
 urls:
   reference: https://r-tmap.github.io/tmap.glyphs/reference
   article: https://r-tmap.github.io/tmap.glyphs/articles
