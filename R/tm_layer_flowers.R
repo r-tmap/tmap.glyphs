@@ -114,7 +114,7 @@ tm_flowers = function(parts = tmap::tm_vars(multivariate = TRUE),
 	shape.free = NA
 	
 	tmap::tm_element_list(tmap::tm_element(
-		layer = "flowers",
+		layer = c("flowers", "symbols"),
 		trans.fun = tmap::tmapTransCentroid,
 		trans.aes = list(),
 		trans.args = options$trans.args,

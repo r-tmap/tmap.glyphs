@@ -19,4 +19,4 @@ Config/Needs/coverage: Nowosad/spDataLarge, lwgeom
 Config/Needs/website: bookdown, rmarkdown, r-tmap/tmap
 URL: https://github.com/r-tmap/tmap.glyphs, https://r-tmap.github.io/tmap.glyphs/
 BugReports: https://github.com/r-tmap/tmap.glyphs/issues
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3

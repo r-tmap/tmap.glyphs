@@ -146,7 +146,7 @@ tm_donuts = function(parts = tmap::tm_vars(multivariate = TRUE),
 	shape.free = NA
 	
 	tmap::tm_element_list(tmap::tm_element(
-		layer = "donuts",
+		layer = c("donuts", "symbols"),
 		trans.fun = tmap::tmapTransCentroid,
 		trans.aes = list(),
 		trans.args = options$trans.args,
