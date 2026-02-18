@@ -41,11 +41,13 @@ opt_tm_donuts = function(start = 0,
 						 points_only = "ifany",
 						 point_per = "feature",
 						 on_surface = FALSE,
+						 clustering = FALSE,
 						 icon.scale = 6,
 						 just = NA,
 						 grob.dim = c(width=48, height=48, render.width=256, render.height=256)) {
 	list(mapping.args = list(icon.scale = icon.scale,
 							 just = just,
+							 clustering = clustering,
 							 start = start,
 							 direction = direction,
 							 inner = inner,
@@ -101,6 +103,7 @@ opt_tm_donuts = function(start = 0,
 #' @param icon.scale scaling number that determines how large the icons (or grobs) are in plot mode in comparison to proportional symbols (such as bubbles). For view mode, use the argument `grob.dim`
 #' @param just justification of the text relative to the point coordinates. Either one of the following values: \code{"left"} , \code{"right"}, \code{"center"}, \code{"bottom"}, and \code{"top"}, or a vector of two values where first value specifies horizontal and the second value vertical justification. Besides the mentioned values, also numeric values between 0 and 1 can be used. 0 means left justification for the first value and bottom justification for the second value. Note that in view mode, only one value is used.
 #' @param grob.dim vector of four values that determine how grob objects (see details) are shown in view mode. The first and second value are the width and height of the displayed icon. The third and fourth value are the width and height of the rendered png image that is used for the icon. Generally, the third and fourth value should be large enough to render a graphic successfully. Only needed for the view mode.
+#' @param clustering in interactive modes (e.g. \code{"view"} mode), should clustering be applied at lower zoom levels? Either `FALSE` (default), `TRUE`, or a mode specific specification, e.g. for \code{"view"} mode \code{\link[leaflet:markerClusterOptions]{markerClusterOptions}}.
 #' @example ./examples/tm_donuts.R
 #' @return a [tmap::tmap-element], supposed to be stacked after [tmap::tm_shape()] using the `+` operator. The `opt_<layer_function>` function returns a list that should be passed on to the `options` argument.
 #' @export

@@ -86,7 +86,7 @@ donutGrob = function(df, opts = list(inner = 0.4, direction = 1, start = 0)) {
 	}
 	
 	# Combine all grobs into a single gTree object
-	grid::gTree(children = do.call(grid::gList, grob_list), vp = grid::viewport(width = grid::unit(1, "snpc"), height = grid::unit(1, "snpc"), xscale = c(-1, 1), yscale = c(-1, 1)))
+	grid::gTree(children = do.call(grid::gList, grob_list), vp = grid::viewport(width = grid::unit(1, "snpc") - grid::unit(100, "pt"), height = grid::unit(1, "snpc") - grid::unit(100, "pt"), xscale = c(-1, 1), yscale = c(-1, 1)))
 }
 
 
