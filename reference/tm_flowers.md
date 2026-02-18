@@ -13,6 +13,7 @@ opt_tm_flowers(
   points_only = "ifany",
   point_per = "feature",
   on_surface = FALSE,
+  clustering = FALSE,
   icon.scale = 6,
   just = NA,
   grob.dim = c(width = 48, height = 48, render.width = 256, render.height = 256)
@@ -95,6 +96,13 @@ tm_flowers(
   the surface? If \`TRUE\`, which is slower than the default \`FALSE\`,
   centroids outside the surface are replaced with points computed with
   \[sf::st_point_on_surface()\].
+
+- clustering:
+
+  in interactive modes (e.g. `"view"` mode), should clustering be
+  applied at lower zoom levels? Either \`FALSE\` (default), \`TRUE\`, or
+  a mode specific specification, e.g. for `"view"` mode
+  [`markerClusterOptions`](https://rstudio.github.io/leaflet/reference/map-options.html).
 
 - icon.scale:
 

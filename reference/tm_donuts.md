@@ -28,6 +28,7 @@ opt_tm_donuts(
   points_only = "ifany",
   point_per = "feature",
   on_surface = FALSE,
+  clustering = FALSE,
   icon.scale = 6,
   just = NA,
   grob.dim = c(width = 48, height = 48, render.width = 256, render.height = 256)
@@ -145,6 +146,13 @@ tm_donuts(
 
   options passed on to the corresponding \`opt\_\<layer_function\>\`
   function
+
+- clustering:
+
+  in interactive modes (e.g. `"view"` mode), should clustering be
+  applied at lower zoom levels? Either \`FALSE\` (default), \`TRUE\`, or
+  a mode specific specification, e.g. for `"view"` mode
+  [`markerClusterOptions`](https://rstudio.github.io/leaflet/reference/map-options.html).
 
 - parts, parts.scale, parts.legend, parts.chart, parts.free:
 
