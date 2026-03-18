@@ -2,8 +2,8 @@
 #' @keywords internal
 #' @rdname internals_glyphs
 #' @method tmapGridDataPlot tm_data_donuts
-tmapGridDataPlot.tm_data_donuts = function(a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
-	tmapXDonuts(gs = "Grid", a = a, shpTM = shpTM, dt = dt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, o = o, ...)
+tmapGridDataPlot.tm_data_donuts = function(a, shpTM, dt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...) {
+	tmapXDonuts(gs = "Grid", a = a, shpTM = shpTM, dt = dt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
 }
 
 #' @export
@@ -11,11 +11,11 @@ tmapGridDataPlot.tm_data_donuts = function(a, shpTM, dt, gp, bbx, facet_row, fac
 #' @rdname internals_glyphs
 #' @method tmapLeafletDataPlot tm_data_donuts
 tmapLeafletDataPlot.tm_data_donuts = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
-	tmapXDonuts(gs = "Leaflet", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, o = o, ...)
+	tmapXDonuts(gs = "Leaflet", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
 }
 
 	
-tmapXDonuts = function(gs, a, shpTM, dt, pdt = NULL, popup.format = list(), hdt = NULL, idt = NULL, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+tmapXDonuts = function(gs, a, shpTM, dt, pdt = NULL, popup.format = list(), hdt = NULL, idt = NULL, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...) {
 	ymin = NULL
 	ymax = NULL
 	lwd = NULL
@@ -86,5 +86,5 @@ tmapXDonuts = function(gs, a, shpTM, dt, pdt = NULL, popup.format = list(), hdt 
 	# assign("legs", legs_cached, envir = .TMAP)
 	class(a) = c("tm_data_symbols", "list")
 
-	do.call(fun, c(list(a, shpTM = shpTM, dt = dt, gp = gp, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, o = o), list(...)))
+	do.call(fun, c(list(a, shpTM = shpTM, dt = dt, gp = gp, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o), list(...)))
 }

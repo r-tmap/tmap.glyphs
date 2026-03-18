@@ -19,6 +19,7 @@
   id,
   pane,
   group,
+  glid,
   o,
   ...
 )
@@ -55,6 +56,7 @@
   id,
   pane,
   group,
+  glid,
   o,
   ...
 )
@@ -75,6 +77,7 @@
   id,
   pane,
   group,
+  glid,
   o,
   ...
 )
