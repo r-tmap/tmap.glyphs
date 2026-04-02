@@ -40,6 +40,7 @@
   id,
   pane,
   group,
+  glid,
   o,
   ...
 )
