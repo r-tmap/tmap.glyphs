@@ -10,7 +10,7 @@ tmapGridDataPlot.tm_data_donuts = function(a, shpTM, dt, gp, bbx, facet_row, fac
 #' @keywords internal
 #' @rdname internals_glyphs
 #' @method tmapLeafletDataPlot tm_data_donuts
-tmapLeafletDataPlot.tm_data_donuts = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, o, ...) {
+tmapLeafletDataPlot.tm_data_donuts = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...) {
 	tmapXDonuts(gs = "Leaflet", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
 }
 
