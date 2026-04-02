@@ -40,6 +40,7 @@ tmapLeafletDataPlot(
   id,
   pane,
   group,
+  glid,
   o,
   ...
 )
