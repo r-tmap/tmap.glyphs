@@ -11,12 +11,14 @@ control over size, layout, and appearance.
 Installation of **tmap.glpyhs** is straightforward:
 
 ``` r
+
 install.packages("tmap.glyphs")
 ```
 
 ### Development version
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("r-tmap/tmap.glyphs")
 

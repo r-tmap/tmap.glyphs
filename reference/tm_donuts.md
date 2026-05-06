@@ -254,7 +254,8 @@ ZH_muni$income_high[1:15] = NA
 
 tm_shape(ZH_muni) +
   tm_polygons() +
-  tm_donuts(parts = tm_vars(c("income_low", "income_middle", "income_high"), multivariate = TRUE),
+  tm_donuts(
+    parts = tm_vars(c("income_low", "income_middle", "income_high"), multivariate = TRUE),
     fill.scale = tm_scale_categorical(values = "-pu_gn_div"),        
     size = "population",
     lwd = 1,
@@ -268,11 +269,12 @@ tm_shape(ZH_muni) +
 
 tm_shape(ZH_muni) +
   tm_polygons() +
-  tm_pies(parts = tm_vars(c("income_low", "income_middle", "income_high"), multivariate = TRUE),
-        fill.scale = tm_scale_categorical(values = "-pu_gn_div"),        
-        size = "population",
-        lwd = 1,
-        size.scale = tm_scale_continuous(ticks = c(50000, 100000, 250000, 500000)))
+  tm_pies(
+      parts = tm_vars(c("income_low", "income_middle", "income_high"), multivariate = TRUE),
+    fill.scale = tm_scale_categorical(values = "-pu_gn_div"),        
+    size = "population",
+    lwd = 1,
+    size.scale = tm_scale_continuous(ticks = c(50000, 100000, 250000, 500000)))
 #> [plot mode] legend/component: Some components or legends are too "high" and are
 #> therefore rescaled.
 #> ℹ Set the tmap option `component.autoscale = FALSE` to disable rescaling.

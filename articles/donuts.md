@@ -16,6 +16,7 @@ we apply a filter and subsequently derive the percentage of middle
 income:
 
 ``` r
+
 ZH_muni = NLD_muni[NLD_muni$province == "Zuid-Holland", ]
 ZH_muni$income_middle = 100 - ZH_muni$income_high - ZH_muni$income_low
 ```
@@ -25,6 +26,7 @@ ZH_muni$income_middle = 100 - ZH_muni$income_high - ZH_muni$income_low
 Pie maps are (just) a special case of donut maps.
 
 ``` r
+
 tm_shape(ZH_muni) +
   tm_polygons() +
   tm_pies(parts = tm_vars(c("income_low", "income_middle", "income_high"), multivariate = TRUE),
@@ -51,6 +53,7 @@ Explanation:
 Pies are just a specific case of the more general donuts.
 
 ``` r
+
 tm_shape(ZH_muni) +
   tm_polygons() +
   tm_donuts(
@@ -67,6 +70,7 @@ Via the argument `options`, several properties of the donuts can be
 specified:
 
 ``` r
+
 tm_shape(ZH_muni) +
   tm_polygons() +
   tm_donuts(
