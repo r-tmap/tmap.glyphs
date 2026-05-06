@@ -20,3 +20,5 @@ README
 sandbox
 figures
 local
+^\.positai$
+^\.claude$

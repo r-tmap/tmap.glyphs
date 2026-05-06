@@ -1,2 +1,7 @@
+version 0.1-1
+- internals updated to tmap 4.3
+- added tm_pies (special case of tm_donuts)
+- added clustering
+
 version 0.1
 - development version
