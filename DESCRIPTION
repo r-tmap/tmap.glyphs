@@ -10,12 +10,14 @@ Description: Provides new layer functions to 'tmap' for drawing glyphs. A glyph 
 Version: 0.1-1
 Encoding: UTF-8
 Depends:
-    R (>= 3.5.0),
+    R (>= 4.1),
 Imports:
     tmap (>= 4.3),
     data.table,
     units
-Config/Needs/check: Nowosad/spDataLarge, lwgeom, r-tmap/tmap
+Suggests:
+	tmap.mapgl
+Config/Needs/check: Nowosad/spDataLarge, lwgeom, r-tmap/tmap, r-tmap/tmap.mapgl
 Config/Needs/coverage: Nowosad/spDataLarge, lwgeom
 Config/Needs/website: bookdown, rmarkdown, r-tmap/tmap
 URL: https://github.com/r-tmap/tmap.glyphs, https://r-tmap.github.io/tmap.glyphs/

@@ -23,17 +23,15 @@ tmapLeafletDataPlot.tm_data_flowers = function(a, shpTM, dt, pdt, popup.format, 
 }
 
 #' @keywords internal
-#' @export
 #' @rdname internals_glyphs
-#' @method tmapMapboxDataPlot tm_data_flowers
+#' @exportS3Method tmap.mapgl::tmapMapboxDataPlot
 tmapMapboxDataPlot.tm_data_flowers = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...)  {
 	tmapXFlowers(gs = "Mapbox", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
 }
 
 #' @keywords internal
-#' @export
 #' @rdname internals_glyphs
-#' @method tmapMaplibreDataPlot tm_data_flowers
+#' @exportS3Method tmap.mapgl::tmapMaplibreDataPlot
 tmapMaplibreDataPlot.tm_data_flowers = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...)  {
 	tmapXFlowers(gs = "Maplibre", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
 }

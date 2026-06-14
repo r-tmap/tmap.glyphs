@@ -14,18 +14,16 @@ tmapLeafletDataPlot.tm_data_donuts = function(a, shpTM, dt, pdt, popup.format, h
 	tmapXDonuts(gs = "Leaflet", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
 }
 
-#' @export
 #' @keywords internal
 #' @rdname internals_glyphs
-#' @method tmapMapboxDataPlot tm_data_donuts
+#' @exportS3Method tmap.mapgl::tmapMapboxDataPlot
 tmapMapboxDataPlot.tm_data_donuts = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...) {
 	tmapXDonuts(gs = "Mapbox", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
 }
 
-#' @export
 #' @keywords internal
 #' @rdname internals_glyphs
-#' @method tmapMaplibreDataPlot tm_data_donuts
+#' @exportS3Method tmap.mapgl::tmapMaplibreDataPlot
 tmapMaplibreDataPlot.tm_data_donuts = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...) {
 	tmapXDonuts(gs = "Maplibre", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
 }
