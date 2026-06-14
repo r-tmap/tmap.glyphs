@@ -3,8 +3,12 @@
 \name{tmapGridDataPlot.tm_data_donuts}
 \alias{tmapGridDataPlot.tm_data_donuts}
 \alias{tmapLeafletDataPlot.tm_data_donuts}
+\alias{tmapMapboxDataPlot.tm_data_donuts}
+\alias{tmapMaplibreDataPlot.tm_data_donuts}
 \alias{tmapGridDataPlot.tm_data_flowers}
 \alias{tmapLeafletDataPlot.tm_data_flowers}
+\alias{tmapMapboxDataPlot.tm_data_flowers}
+\alias{tmapMaplibreDataPlot.tm_data_flowers}
 \title{Internal methods for tm_flowers}
 \usage{
 \method{tmapGridDataPlot}{tm_data_donuts}(
@@ -45,6 +49,48 @@
   ...
 )
 
+\method{tmapMapboxDataPlot}{tm_data_donuts}(
+  a,
+  shpTM,
+  dt,
+  pdt,
+  popup.format,
+  hdt,
+  idt,
+  gp,
+  bbx,
+  facet_row,
+  facet_col,
+  facet_page,
+  id,
+  pane,
+  group,
+  glid,
+  o,
+  ...
+)
+
+\method{tmapMaplibreDataPlot}{tm_data_donuts}(
+  a,
+  shpTM,
+  dt,
+  pdt,
+  popup.format,
+  hdt,
+  idt,
+  gp,
+  bbx,
+  facet_row,
+  facet_col,
+  facet_page,
+  id,
+  pane,
+  group,
+  glid,
+  o,
+  ...
+)
+
 \method{tmapGridDataPlot}{tm_data_flowers}(
   a,
   shpTM,
@@ -63,6 +109,48 @@
 )
 
 \method{tmapLeafletDataPlot}{tm_data_flowers}(
+  a,
+  shpTM,
+  dt,
+  pdt,
+  popup.format,
+  hdt,
+  idt,
+  gp,
+  bbx,
+  facet_row,
+  facet_col,
+  facet_page,
+  id,
+  pane,
+  group,
+  glid,
+  o,
+  ...
+)
+
+\method{tmapMapboxDataPlot}{tm_data_flowers}(
+  a,
+  shpTM,
+  dt,
+  pdt,
+  popup.format,
+  hdt,
+  idt,
+  gp,
+  bbx,
+  facet_row,
+  facet_col,
+  facet_page,
+  id,
+  pane,
+  group,
+  glid,
+  o,
+  ...
+)
+
+\method{tmapMaplibreDataPlot}{tm_data_flowers}(
   a,
   shpTM,
   dt,

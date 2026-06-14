@@ -14,6 +14,22 @@ tmapLeafletDataPlot.tm_data_donuts = function(a, shpTM, dt, pdt, popup.format, h
 	tmapXDonuts(gs = "Leaflet", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
 }
 
+#' @export
+#' @keywords internal
+#' @rdname internals_glyphs
+#' @method tmapMapboxDataPlot tm_data_donuts
+tmapMapboxDataPlot.tm_data_donuts = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...) {
+	tmapXDonuts(gs = "Mapbox", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
+}
+
+#' @export
+#' @keywords internal
+#' @rdname internals_glyphs
+#' @method tmapMaplibreDataPlot tm_data_donuts
+tmapMaplibreDataPlot.tm_data_donuts = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...) {
+	tmapXDonuts(gs = "Maplibre", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
+}
+
 	
 tmapXDonuts = function(gs, a, shpTM, dt, pdt = NULL, popup.format = list(), hdt = NULL, idt = NULL, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...) {
 	ymin = NULL
@@ -32,8 +48,18 @@ tmapXDonuts = function(gs, a, shpTM, dt, pdt = NULL, popup.format = list(), hdt 
 	}, val_list, 1:n, SIMPLIFY = FALSE))
 	
 	fill = strsplit(dt$fill[1], "__", fixed = TRUE)[[1]]
-
-	if (gs == "Leaflet") {
+	
+	# Reconcile donut size across modes. The leaflet icon pipeline
+	# (a$icon.scale/3 in tmap's tmapLeafletDataPlot_symbols.R:277, times
+	# grob.dim["width"]) renders ~2x smaller than the grid pipeline
+	# (gp$size * 9/10 * a$icon.scale, tmapGridDataPlot_symbols.R:81) for the
+	# same size value. Compensate here so one `values.scale` matches both modes.
+	# Applied before lwd_compensation so 16/dt$size keeps stroke width constant.
+	
+	size_mode_factor = switch(gs, Leaflet = 1.5, Mapbox = 2.333, Maplibre = 2.333, 1) 
+	dt[, size := size * size_mode_factor]
+	
+	if (gs %in% c("Leaflet", "Mapbox", "Maplibre")) {
 		dat$lwd_compensation = 16/dt$size[dat$id]
 	} else {
 		dat$lwd_compensation = 4

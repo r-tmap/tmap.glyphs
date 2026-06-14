@@ -39,8 +39,7 @@ tm_shape(World) +
       		  "rank_well_being", "rank_inequality"), multivariate = TRUE),
     fill.scale = tm_scale(values = "friendly5"),
     size = 1.5, 
-    popup.vars = c("rank_gender", "rank_press", "rank_footprint",
-    			   "rank_well_being","rank_inequality"), id = "name") +
+    popup = tm_popup(vars = c("Gender" = "norm_gender", "Press freedom" = "norm_press", "Footprint" = "norm_footprint", "Well being" = "norm_well_being", "Economic inequality" =  "norm_inequality")), id = "name") + 
 tm_basemap(NULL) +
 tm_layout(bg.color = "grey90")
 

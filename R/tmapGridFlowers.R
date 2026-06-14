@@ -22,6 +22,22 @@ tmapLeafletDataPlot.tm_data_flowers = function(a, shpTM, dt, pdt, popup.format, 
 	tmapXFlowers(gs = "Leaflet", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
 }
 
+#' @keywords internal
+#' @export
+#' @rdname internals_glyphs
+#' @method tmapMapboxDataPlot tm_data_flowers
+tmapMapboxDataPlot.tm_data_flowers = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...)  {
+	tmapXFlowers(gs = "Mapbox", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
+}
+
+#' @keywords internal
+#' @export
+#' @rdname internals_glyphs
+#' @method tmapMaplibreDataPlot tm_data_flowers
+tmapMaplibreDataPlot.tm_data_flowers = function(a, shpTM, dt, pdt, popup.format, hdt, idt, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...)  {
+	tmapXFlowers(gs = "Maplibre", a = a, shpTM = shpTM, dt = dt, pdt = pdt, popup.format = popup.format, hdt = hdt, idt = idt, gp = gp, bbx = bbx, facet_row = facet_row, facet_col = facet_col, facet_page = facet_page, id = id, pane = pane, group = group, glid = glid, o = o, ...)
+}
+
 
 tmapXFlowers = function(gs, a, shpTM, dt, pdt = NULL, popup.format = list(), hdt = NULL, idt = NULL, gp, bbx, facet_row, facet_col, facet_page, id, pane, group, glid, o, ...) {
 	ymin = NULL
@@ -42,7 +58,14 @@ tmapXFlowers = function(gs, a, shpTM, dt, pdt = NULL, popup.format = list(), hdt
 	
 	fill = strsplit(dt$fill[1], "__", fixed = TRUE)[[1]]
 	
-	if (gs == "Leaflet") {
+	# Cross-mode size reconciliation (same mechanism as tm_donuts). NOTE: these
+	# factors are NOT the donut values — flowers fill the whole grob box (petals
+	# reach the npc edge) rather than ~0.6 of it, so they appear larger for the
+	# same size. Re-ruler all three flower constants against plot mode.
+	size_mode_factor = if (gs == "Leaflet") 1.5 else if (gs %in% c("Mapbox", "Maplibre")) 1.75 else 1
+	dt[, size := size * size_mode_factor]
+	
+	if (gs %in% c("Leaflet", "Mapbox", "Maplibre")) {
 		dat$lwd_compensation = 16/dt$size[dat$id]
 	} else {
 		dat$lwd_compensation = 4

@@ -1,3 +1,6 @@
+version 0.2
+- tmap.mapgl modes (maplibre and mapbox) supported
+
 version 0.1-1
 - internals updated to tmap 4.3
 - added tm_pies (special case of tm_donuts)

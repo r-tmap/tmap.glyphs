@@ -85,8 +85,20 @@ donutGrob = function(df, opts = list(inner = 0.4, direction = 1, start = 0)) {
 		grob_list[[length(grob_list) + 1]] = hole_grob
 	}
 	
+	# Inset must be a fraction of the parent viewport, not a fixed pt amount.
+	# View mode: parent is the fixed render canvas (grob.dim["render.width"]),
+	#   so the old `1 snpc - 100pt` was a constant ~61% inset.
+	# Plot mode: parent is the per-symbol viewport whose side encodes `size`
+	#   (e.g. population), so a fixed pt subtraction destroys proportionality.
+	rdim = if (!is.null(opts$grob.dim)) opts$grob.dim[["render.width"]] else 256
+	pad  = 100 / rdim
+	grid::gTree(children = do.call(grid::gList, grob_list),
+				vp = grid::viewport(width  = grid::unit(1 - pad, "snpc"),
+									height = grid::unit(1 - pad, "snpc"),
+									xscale = c(-1, 1), yscale = c(-1, 1)))
+	
 	# Combine all grobs into a single gTree object
-	grid::gTree(children = do.call(grid::gList, grob_list), vp = grid::viewport(width = grid::unit(1, "snpc") - grid::unit(100, "pt"), height = grid::unit(1, "snpc") - grid::unit(100, "pt"), xscale = c(-1, 1), yscale = c(-1, 1)))
+	#grid::gTree(children = do.call(grid::gList, grob_list), vp = grid::viewport(width = grid::unit(1, "snpc") - grid::unit(100, "pt"), height = grid::unit(1, "snpc") - grid::unit(100, "pt"), xscale = c(-1, 1), yscale = c(-1, 1)))
 }
 
 

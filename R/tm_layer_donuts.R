@@ -81,12 +81,20 @@ opt_tm_donuts = function(start = 0,
 #'   (meaning only one group can be shown), `"check"` for check boxes
 #'   (so multiple groups can be shown), and `"none"` for no control (the group cannot be (de)selected).
 #' @param options options passed on to the corresponding `opt_<layer_function>` function
-#' @param popup.vars names of data variables that are shown in the popups in
-#'   `"view"` mode. Set popup.vars to `TRUE` to show all variables in the shape object.
-#'   Set popup.vars to `FALSE` to disable popups. Set popup.vars to a character vector
-#'   of variable names to those those variables in the popups. The default (`NA`)
-#'   depends on whether visual variables (e.g.`col`) are used. If so, only those are shown. If not all variables in the shape object are shown.
-#' @param popup.format list of formatting options for the popup values.
+#' @param popup popup specification for `"view"` mode, the output of [tmap::tm_popup()].
+#'   It determines the data variables shown in the popup table, the popup title,
+#'   and the popup layout. This replaces the deprecated arguments `popup.vars`
+#'   and `popup.format`.
+#' @param popup.vars (Deprecated.) Use `popup` with [tmap::tm_popup()] instead
+#'   (via its `vars` argument). Names of data variables that are shown in the
+#'   popups in `"view"` mode. Set `popup.vars` to `TRUE` to show all variables in
+#'   the shape object. Set `popup.vars` to `FALSE` to disable popups. Set
+#'   `popup.vars` to a character vector of variable names to show those variables
+#'   in the popups. The default (`NA`) depends on whether visual variables
+#'   (e.g. `col`) are used. If so, only those are shown. If not, all variables in
+#'   the shape object are shown.
+#' @param popup.format (Deprecated.) Use `popup` with [tmap::tm_popup()] instead
+#'   (via its `format` argument). List of formatting options for the popup values.
 #'   See the argument `legend.format` for options. Only applicable for numeric data
 #'   variables. If one list of formatting options is provided, it is applied to
 #'   all numeric variables of `popup.vars`. Also, a (named) list of lists can be provided.
@@ -135,13 +143,27 @@ tm_donuts = function(parts = tmap::tm_vars(multivariate = TRUE),
 					 zindex = NA,
 					 group = NA,
 					 group.control = "check",
+					 popup = tmap::tm_popup(),
 					 popup.vars = NA,
-					 popup.format = list(),
+					 popup.format = tmap::tm_label_format(),
 					 hover = "",
 					 id = "",
 					 options = opt_tm_donuts()) {
 	po = plot.order
-	
+
+	args_called = names(match.call())[-1]
+
+	# resolve popup specification (popup.vars/popup.format are deprecated in
+	# favour of popup = tm_popup(...))
+	popup = utils::getFromNamespace("process_popup", "tmap")(
+		popup = popup,
+		popup.vars = popup.vars,
+		popup.format = popup.format,
+		popup.called = "popup" %in% args_called,
+		popup.vars.called = "popup.vars" %in% args_called,
+		popup.format.called = "popup.format" %in% args_called,
+		layer_fun = "tm_donuts")
+
 	shape = 21# grid::circleGrob(r = unit(1, "lines"))
 	shape.scale = tmap::tm_scale()
 	shape.legend = tmap::tm_legend()
@@ -208,8 +230,10 @@ tm_donuts = function(parts = tmap::tm_vars(multivariate = TRUE),
 		zindex = zindex,
 		group = group,
 		group.control = group.control,
-		popup.vars = popup.vars,
-		popup.format = popup.format,
+		popup.vars = popup$vars,
+		popup.format = popup$format,
+		popup.title = popup$title,
+		popup.layout = popup$layout,
 		hover = hover,
 		id = id,
 		subclass = c("tm_aes_layer", "tm_layer")))

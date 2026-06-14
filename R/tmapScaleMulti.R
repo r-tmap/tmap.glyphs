@@ -49,8 +49,10 @@ tmapScaleMulti = function(..., scale, legend, chart, o, aes, layer, layer_args, 
 		
 		value.neutral = vals[1]
 		
-		# only for the legend
-		icon_scale = layer_args$icon.scale * {if (getOption("tmap.mode") == "plot") 1.15 else .80} # approximation, have to find out why
+		# only for the legend; single factor, since the size_mode_factor in
+		# tmapXFlowers now absorbs the plot/view difference (cf. tm_donuts).
+		# RE-RULER for flowers — the donut value (.72) won't transfer.
+		icon_scale = layer_args$icon.scale * .72
 		
 		legend = within(legend, {
 			nitems = length(labs)
