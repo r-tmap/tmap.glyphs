@@ -45,6 +45,50 @@ tmapLeafletDataPlot(
   ...
 )
 
+# S3 method for class 'tm_data_donuts'
+tmapMapboxDataPlot(
+  a,
+  shpTM,
+  dt,
+  pdt,
+  popup.format,
+  hdt,
+  idt,
+  gp,
+  bbx,
+  facet_row,
+  facet_col,
+  facet_page,
+  id,
+  pane,
+  group,
+  glid,
+  o,
+  ...
+)
+
+# S3 method for class 'tm_data_donuts'
+tmapMaplibreDataPlot(
+  a,
+  shpTM,
+  dt,
+  pdt,
+  popup.format,
+  hdt,
+  idt,
+  gp,
+  bbx,
+  facet_row,
+  facet_col,
+  facet_page,
+  id,
+  pane,
+  group,
+  glid,
+  o,
+  ...
+)
+
 # S3 method for class 'tm_data_flowers'
 tmapGridDataPlot(
   a,
@@ -65,6 +109,50 @@ tmapGridDataPlot(
 
 # S3 method for class 'tm_data_flowers'
 tmapLeafletDataPlot(
+  a,
+  shpTM,
+  dt,
+  pdt,
+  popup.format,
+  hdt,
+  idt,
+  gp,
+  bbx,
+  facet_row,
+  facet_col,
+  facet_page,
+  id,
+  pane,
+  group,
+  glid,
+  o,
+  ...
+)
+
+# S3 method for class 'tm_data_flowers'
+tmapMapboxDataPlot(
+  a,
+  shpTM,
+  dt,
+  pdt,
+  popup.format,
+  hdt,
+  idt,
+  gp,
+  bbx,
+  facet_row,
+  facet_col,
+  facet_page,
+  id,
+  pane,
+  group,
+  glid,
+  o,
+  ...
+)
+
+# S3 method for class 'tm_data_flowers'
+tmapMaplibreDataPlot(
   a,
   shpTM,
   dt,

@@ -48,8 +48,9 @@ tm_flowers(
   zindex = NA,
   group = NA,
   group.control = "check",
+  popup = tmap::tm_popup(),
   popup.vars = NA,
-  popup.format = list(),
+  popup.format = tmap::tm_label_format(),
   hover = "",
   id = "",
   options = opt_tm_flowers()
@@ -171,24 +172,34 @@ tm_flowers(
   groups can be shown), and \`"none"\` for no control (the group cannot
   be (de)selected).
 
+- popup:
+
+  popup specification for \`"view"\` mode, the output of
+  \[tmap::tm_popup()\]. It determines the data variables shown in the
+  popup table, the popup title, and the popup layout. This replaces the
+  deprecated arguments \`popup.vars\` and \`popup.format\`.
+
 - popup.vars:
 
-  names of data variables that are shown in the popups in \`"view"\`
-  mode. Set popup.vars to \`TRUE\` to show all variables in the shape
-  object. Set popup.vars to \`FALSE\` to disable popups. Set popup.vars
-  to a character vector of variable names to those those variables in
-  the popups. The default (\`NA\`) depends on whether visual variables
-  (e.g.\`col\`) are used. If so, only those are shown. If not all
-  variables in the shape object are shown.
+  (Deprecated.) Use \`popup\` with \[tmap::tm_popup()\] instead (via its
+  \`vars\` argument). Names of data variables that are shown in the
+  popups in \`"view"\` mode. Set \`popup.vars\` to \`TRUE\` to show all
+  variables in the shape object. Set \`popup.vars\` to \`FALSE\` to
+  disable popups. Set \`popup.vars\` to a character vector of variable
+  names to show those variables in the popups. The default (\`NA\`)
+  depends on whether visual variables (e.g. \`col\`) are used. If so,
+  only those are shown. If not, all variables in the shape object are
+  shown.
 
 - popup.format:
 
-  list of formatting options for the popup values. See the argument
-  \`legend.format\` for options. Only applicable for numeric data
-  variables. If one list of formatting options is provided, it is
-  applied to all numeric variables of \`popup.vars\`. Also, a (named)
-  list of lists can be provided. In that case, each list of formatting
-  options is applied to the named variable.
+  (Deprecated.) Use \`popup\` with \[tmap::tm_popup()\] instead (via its
+  \`format\` argument). List of formatting options for the popup values.
+  See the argument \`legend.format\` for options. Only applicable for
+  numeric data variables. If one list of formatting options is provided,
+  it is applied to all numeric variables of \`popup.vars\`. Also, a
+  (named) list of lists can be provided. In that case, each list of
+  formatting options is applied to the named variable.
 
 - hover:
 
@@ -234,6 +245,11 @@ tm_shape(World) +
     id = "name") +
 tm_basemap(NULL) +
 tm_layout(bg.color = "grey90")
+#> [deprecated] The arguments `popup.vars` and `popup.format` of `tm_polygons()`
+#> are deprecated.
+#> ℹ Use `popup` with `tm_popup()` instead, e.g. `popup = tm_popup(vars = ...,
+#>   format = ...)`.
+#> This message is displayed once every 8 hours.
 #> [tip] Consider a suitable map projection, e.g. by adding `+ tm_crs("auto")`.
 #> This message is displayed once per session.
 
@@ -264,15 +280,21 @@ tm_shape(World) +
             "rank_well_being", "rank_inequality"), multivariate = TRUE),
     fill.scale = tm_scale(values = "friendly5"),
     size = 1.5, 
-    popup.vars = c("rank_gender", "rank_press", "rank_footprint",
-             "rank_well_being","rank_inequality"), id = "name") +
+    popup = tm_popup(vars = c("Gender" = "norm_gender", "Press freedom" = "norm_press", "Footprint" = "norm_footprint", "Well being" = "norm_well_being", "Economic inequality" =  "norm_inequality")), id = "name") + 
 tm_basemap(NULL) +
 tm_layout(bg.color = "grey90")
-
+#> Error in eval(substitute(expr), e): `popup.vars` must be one of "iso_a3", "name", "sovereignt", "continent",
+#> "area", "pop_est", "pop_est_dens", "economy", "income_grp", "gdp_cap_est",
+#> "life_exp", "well_being", "footprint", "HPI", "inequality", "gender", "press",
+#> "rank_well_being", "rank_footprint", "rank_inequality", "rank_press", or
+#> "rank_gender", not "norm_gender".
+#> ℹ Did you mean "rank_gender"?
 
 ttmp()
 #> ℹ tmap modes "plot" - "view"
 #> ℹ toggle with `tmap::ttm()`
 #> This message is displayed once per session.
-#> Error: not all variables specified in tm_vars are found
+#> [view mode] WebGL does not work (yet) with projected map projections, so it has
+#> been disabled.
+#> This message is displayed once per session.
 ```
