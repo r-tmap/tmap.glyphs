@@ -172,15 +172,21 @@ World$rank_press = q(1 - ((100 - World$press) / 100))
 World$rank_gender = q(1 - World$gender)
 
 tm_shape(World) +
-  tm_polygons(fill = "white", popup.vars = FALSE) +
+  tm_polygons(fill = "white", popup = FALSE) +
 tm_shape(World) +	
   tm_flowers(
     parts = 
       tm_vars(c("rank_gender", "rank_press", "rank_footprint", 
       		  "rank_well_being", "rank_inequality"), multivariate = TRUE),
-    fill.scale = tm_scale(values = "friendly5"),
+    fill.scale = tm_scale(values = "friendly5", labels = c("Gender", "Press freedom", "Footprint", "Well being", "Economic inequality")),
     size = 1.5, 
-    popup = tm_popup(vars = c("Gender" = "norm_gender", "Press freedom" = "norm_press", "Footprint" = "norm_footprint", "Well being" = "norm_well_being", "Economic inequality" =  "norm_inequality")), id = "name") + 
+    popup = tm_popup(
+      vars = c("Gender" = "rank_gender", 
+      		 "Press freedom" = "rank_press", 
+      		 "Footprint" = "rank_footprint", 
+      		 "Well being" = "rank_well_being", 
+      		 "Economic inequality" =  "rank_inequality"),
+      title = "name")) + 
 tm_basemap(NULL) +
 tm_layout(bg.color = "grey90")
 
