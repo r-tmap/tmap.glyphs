@@ -1,7 +1,3 @@
-## Resubmission
-
-* Fixed precheck issues
-
 ## Test environments
 * macOS (devel and release)
 * windows (devel and release)

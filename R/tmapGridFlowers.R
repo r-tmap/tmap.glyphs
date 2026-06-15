@@ -43,7 +43,7 @@ tmapXFlowers = function(gs, a, shpTM, dt, pdt = NULL, popup.format = list(), hdt
 	lwd = NULL
 	shape = NULL
 	parts = NULL
-	
+	size = NULL
 
 	val_list = decode_mv(dt$parts, digits = 5)
 	n = length(val_list)

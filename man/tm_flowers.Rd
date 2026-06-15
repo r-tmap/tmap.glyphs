@@ -178,7 +178,10 @@ tm_shape(World) +
     parts = 
       tm_vars(c("rank_gender", "rank_press", "rank_footprint", 
       		  "rank_well_being", "rank_inequality"), multivariate = TRUE),
-    fill.scale = tm_scale(values = "friendly5", labels = c("Gender", "Press freedom", "Footprint", "Well being", "Economic inequality")),
+    fill.scale = 
+      tm_scale(
+      	values = "friendly5", 
+    	labels = c("Gender", "Press freedom", "Footprint", "Well being", "Economic inequality")),
     size = 1.5, 
     popup = tm_popup(
       vars = c("Gender" = "rank_gender", 
