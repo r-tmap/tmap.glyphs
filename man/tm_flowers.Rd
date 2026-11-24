@@ -63,17 +63,17 @@ tm_flowers(
 
 \item{inner}{proportion of the inner circle}
 
-\item{fill_hole}{should the hole be filled? Either `FALSE` or a fill color.}
+\item{fill_hole}{should the hole be filled? Either \code{FALSE} or a fill color.}
 
-\item{points_only}{should only point geometries of the shape object (defined in [tm_shape()]) be plotted? By default `"ifany"`, which means `TRUE` in case a geometry collection is specified.}
+\item{points_only}{should only point geometries of the shape object (defined in \code{\link[tmap:tm_shape]{tm_shape()}}) be plotted? By default \code{"ifany"}, which means \code{TRUE} in case a geometry collection is specified.}
 
 \item{point_per}{specification of how spatial points are mapped when the geometry is a multi line or a multi polygon. One of \code{"feature"}, \code{"segment"} or \code{"largest"}. The first generates a spatial point for every feature, the second for every segment (i.e. subfeature), the third only for the largest segment (subfeature). Note that the last two options can be significant slower.}
 
-\item{on_surface}{In case of polygons, centroids are computed. Should the points be on the surface? If `TRUE`, which is slower than the default `FALSE`, centroids outside the surface are replaced with points computed with [sf::st_point_on_surface()].}
+\item{on_surface}{In case of polygons, centroids are computed. Should the points be on the surface? If \code{TRUE}, which is slower than the default \code{FALSE}, centroids outside the surface are replaced with points computed with \code{\link[sf:st_point_on_surface]{sf::st_point_on_surface()}}.}
 
-\item{clustering}{in interactive modes (e.g. \code{"view"} mode), should clustering be applied at lower zoom levels? Either `FALSE` (default), `TRUE`, or a mode specific specification, e.g. for \code{"view"} mode \code{\link[leaflet:markerClusterOptions]{markerClusterOptions}}.}
+\item{clustering}{in interactive modes (e.g. \code{"view"} mode), should clustering be applied at lower zoom levels? Either \code{FALSE} (default), \code{TRUE}, or a mode specific specification, e.g. for \code{"view"} mode \code{\link[leaflet:markerClusterOptions]{markerClusterOptions}}.}
 
-\item{icon.scale}{scaling number that determines how large the icons (or grobs) are in plot mode in comparison to proportional symbols (such as bubbles). For view mode, use the argument `grob.dim`}
+\item{icon.scale}{scaling number that determines how large the icons (or grobs) are in plot mode in comparison to proportional symbols (such as bubbles). For view mode, use the argument \code{grob.dim}}
 
 \item{just}{justification of the text relative to the point coordinates. Either one of the following values: \code{"left"} , \code{"right"}, \code{"center"}, \code{"bottom"}, and \code{"top"}, or a vector of two values where first value specifies horizontal and the second value vertical justification. Besides the mentioned values, also numeric values between 0 and 1 can be used. 0 means left justification for the first value and bottom justification for the second value. Note that in view mode, only one value is used.}
 
@@ -88,52 +88,52 @@ tm_flowers(
 \item{lwd, lwd.scale, lwd.legend, lwd.chart, lwd.free}{Visual variable that determines the line width. See details.}
 
 \item{plot.order}{Specification in which order the spatial features are drawn.
-See [tm_plot_order()] for details.}
+See \code{\link[tmap:tm_plot_order]{tm_plot_order()}} for details.}
 
-\item{zindex}{Map layers are drawn on top of each other. The `zindex` numbers
+\item{zindex}{Map layers are drawn on top of each other. The \code{zindex} numbers
 (one for each map layer) determines the stacking order. By default the map
 layers are drawn in the order they are called.}
 
 \item{group}{Name of the group to which this layer belongs.
 This is only relevant in view mode, where layer groups can be switched
-(see `group.control`)}
+(see \code{group.control})}
 
 \item{group.control}{In view mode, the group control determines how layer
-groups can be switched on and off. Options: `"radio"` for radio buttons
-(meaning only one group can be shown), `"check"` for check boxes
-(so multiple groups can be shown), and `"none"` for no control (the group cannot be (de)selected).}
+groups can be switched on and off. Options: \code{"radio"} for radio buttons
+(meaning only one group can be shown), \code{"check"} for check boxes
+(so multiple groups can be shown), and \code{"none"} for no control (the group cannot be (de)selected).}
 
-\item{popup}{popup specification for `"view"` mode, the output of [tmap::tm_popup()].
+\item{popup}{popup specification for \code{"view"} mode, the output of \code{\link[tmap:tm_popup]{tmap::tm_popup()}}.
 It determines the data variables shown in the popup table, the popup title,
-and the popup layout. This replaces the deprecated arguments `popup.vars`
-and `popup.format`.}
+and the popup layout. This replaces the deprecated arguments \code{popup.vars}
+and \code{popup.format}.}
 
-\item{popup.vars}{(Deprecated.) Use `popup` with [tmap::tm_popup()] instead
-(via its `vars` argument). Names of data variables that are shown in the
-popups in `"view"` mode. Set `popup.vars` to `TRUE` to show all variables in
-the shape object. Set `popup.vars` to `FALSE` to disable popups. Set
-`popup.vars` to a character vector of variable names to show those variables
-in the popups. The default (`NA`) depends on whether visual variables
-(e.g. `col`) are used. If so, only those are shown. If not, all variables in
+\item{popup.vars}{(Deprecated.) Use \code{popup} with \code{\link[tmap:tm_popup]{tmap::tm_popup()}} instead
+(via its \code{vars} argument). Names of data variables that are shown in the
+popups in \code{"view"} mode. Set \code{popup.vars} to \code{TRUE} to show all variables in
+the shape object. Set \code{popup.vars} to \code{FALSE} to disable popups. Set
+\code{popup.vars} to a character vector of variable names to show those variables
+in the popups. The default (\code{NA}) depends on whether visual variables
+(e.g. \code{col}) are used. If so, only those are shown. If not, all variables in
 the shape object are shown.}
 
-\item{popup.format}{(Deprecated.) Use `popup` with [tmap::tm_popup()] instead
-(via its `format` argument). List of formatting options for the popup values.
-See the argument `legend.format` for options. Only applicable for numeric data
+\item{popup.format}{(Deprecated.) Use \code{popup} with \code{\link[tmap:tm_popup]{tmap::tm_popup()}} instead
+(via its \code{format} argument). List of formatting options for the popup values.
+See the argument \code{legend.format} for options. Only applicable for numeric data
 variables. If one list of formatting options is provided, it is applied to
-all numeric variables of `popup.vars`. Also, a (named) list of lists can be provided.
+all numeric variables of \code{popup.vars}. Also, a (named) list of lists can be provided.
 In that case, each list of formatting options is applied to the named variable.}
 
-\item{hover}{name of the data variable that specifies the hover labels (view mode only). Set to `FALSE` to disable hover labels. By default `FALSE`, unless `id` is specified. In that case, it is set to `id`,}
+\item{hover}{name of the data variable that specifies the hover labels (view mode only). Set to \code{FALSE} to disable hover labels. By default \code{FALSE}, unless \code{id} is specified. In that case, it is set to \code{id},}
 
-\item{id}{name of the data variable that specifies the indices of the spatial features. Only used for `"view"` mode.}
+\item{id}{name of the data variable that specifies the indices of the spatial features. Only used for \code{"view"} mode.}
 
-\item{options}{options passed on to the corresponding `opt_<layer_function>` function}
+\item{options}{options passed on to the corresponding \verb{opt_<layer_function>} function}
 
 \item{fill, fill.scale, fill.legend, fill.chart, fill.free}{Visual variable that determines the fill color. See details.}
 }
 \value{
-a [tmap::tmap-element], supposed to be stacked after [tmap::tm_shape()] using the `+` operator. The `opt_<layer_function>` function returns a list that should be passed on to the `options` argument.
+a \link[tmap:tmap-element]{tmap::tmap-element}, supposed to be stacked after \code{\link[tmap:tm_shape]{tmap::tm_shape()}} using the \code{+} operator. The \verb{opt_<layer_function>} function returns a list that should be passed on to the \code{options} argument.
 }
 \description{
 Map layer that draw flowers as glyphs

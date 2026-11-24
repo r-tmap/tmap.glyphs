@@ -22,4 +22,5 @@ Config/Needs/coverage: Nowosad/spDataLarge, lwgeom
 Config/Needs/website: bookdown, rmarkdown, r-tmap/tmap
 URL: https://github.com/r-tmap/tmap.glyphs, https://r-tmap.github.io/tmap.glyphs/
 BugReports: https://github.com/r-tmap/tmap.glyphs/issues
-Config/roxygen2/version: 8.0.0
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.1.1
