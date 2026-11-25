@@ -17,9 +17,9 @@ Imports:
     units
 Suggests:
 	tmap.mapgl
-Config/Needs/check: Nowosad/spDataLarge, lwgeom, r-tmap/tmap, r-tmap/tmap.mapgl
+Config/Needs/check: Nowosad/spDataLarge, lwgeom, r-tmap/tmaptools, r-tmap/tmap, r-tmap/tmap.mapgl
 Config/Needs/coverage: Nowosad/spDataLarge, lwgeom
-Config/Needs/website: bookdown, rmarkdown, r-tmap/tmap
+Config/Needs/website: bookdown, rmarkdown, r-tmap/tmaptools, r-tmap/tmap
 URL: https://github.com/r-tmap/tmap.glyphs, https://r-tmap.github.io/tmap.glyphs/
 BugReports: https://github.com/r-tmap/tmap.glyphs/issues
 Roxygen: list(markdown = TRUE)
